@@ -9,7 +9,7 @@ def bloque_comida(root, pacientes, posicion_glucosa):
     path_comidas_exp = root+'graficas/comidas/paulacomidasExpPaciente.png'
     #crear_grafica_comidasExp(path_comidas_exp)
     print("-Se anade la comida procesada ...")                #Depends of insuline
-    anadeComidaProcesada(root, pacientes, posicion_glucosa)
+    #anadeComidaProcesada(root, pacientes, posicion_glucosa)
     print("-Se procesa los deltas de comida ...")
     path_grafica_comidas_calidad = root+'graficas/comidas/paulacomidasProcesadas.png'
     #crear_grafica_calidad(root, pacientes_all, path_grafica_comidas_calidad)

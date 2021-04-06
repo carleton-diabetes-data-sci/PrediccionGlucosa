@@ -1,4 +1,4 @@
-def bloque_insulina():
+def bloque_insulina(root):
     print("PREPARAR DATOS DE INSULINA")
     print("-Se procesa la insulina como una exponencial creciente y decreciente...")
     print("--Se genera la insulina rapida como exponencial creciente y decreciente...")

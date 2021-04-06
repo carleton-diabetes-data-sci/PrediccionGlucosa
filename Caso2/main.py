@@ -1,14 +1,18 @@
+from configuration.config import bloque_parametros, definir_configuracion
+from glucose_acceleration.glucose_acceleration import bloque_glucosa_aceleracion
+#from glucose_acceleration.glucose import
+from insuline.insuline import bloque_insulina, bloque_insulina_2
+from food.food import bloque_comida
 
-"""MAIN"""
+
 r, root, pacientes, pacientes_all, posicion_glucosa = bloque_parametros()
-#bloque_glucosa_aceleracion(root, pacientes)
-#signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin = bloque_insulina()
+bloque_glucosa_aceleracion(r, pacientes)
+signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin = bloque_insulina(root)
 #bloque_insulina_2(signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin)
 #bloque_comida(root, pacientes, posicion_glucosa)
 
-
-"""MAIN"""
-numero_ejecuciones = 1
+"""
+#execution_number = 1
 scores_exp_1 = []
 scores_exp_2 = []
 scores_exp_3 = []
@@ -18,7 +22,7 @@ scores_exp_6 = []
 scores_exp_7 = []
 listaScores = []
 
-for x in range(numero_ejecuciones):
+for x in range(execution_number):
     print('EJECUCION: ', x)
     r, root, pacientes, pacientes_all, posicion_glucosa = definir_configuracion()
     x, y = bloque_matriz(root, pacientes)
@@ -105,3 +109,5 @@ df = pd.DataFrame(np.array(listaScores),
                            'score_exp_7'])
 
 df.to_csv(root + '/scores.csv', index=False)
+
+"""

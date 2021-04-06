@@ -1,6 +1,15 @@
-def crear_grafica_glucosa(path):
-    glucose = pd.read_csv(root + '001' + '/glucose.csv')
-    # print(glucose)
+import pandas as pd
+import numpy as np
+import os
+import sys
+import matplotlib.pyplot as plt
+
+def crear_grafica_glucosa(root, path):
+    #p = os.path.join(root, "001\glucose.csv")       #p = root + r'\001\glucose.csv'  r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\Caso2\D1NAMO\diabetes_subset\001\glucose.csv'
+    #glucose = pd.read_csv(os.path.join(root, '001\glucose.csv'))
+    glucose = pd.read_csv(r"C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv")
+
+    # (glucose)
     # print(glucose.shape[0])
     eje_x = np.arange(glucose.shape[0])
     # print(eje_x.shape)
@@ -28,6 +37,8 @@ def crear_grafica_glucosa(path):
     ax3.plot(eje_x, glucose['glucose'], color='red', label='glucose')
     leg = ax3.legend()
 
-    plt.show()
+
 
     plt.savefig(path)
+
+    plt.show()

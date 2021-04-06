@@ -10,3 +10,8 @@ crear_grafica_aceleracion(root, path_aceleracion_sin_procesar)
 
 ("--Se genera la gráfica de aceleración procesada para el paciente 1...")
 crear_grafica_aceleracion_procesada(root, path_grafica_aceleracion_procesada)
+
+
+Laura_modificados
+
+Paula
