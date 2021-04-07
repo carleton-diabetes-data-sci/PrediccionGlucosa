@@ -1,4 +1,4 @@
-#casos
+# casos
 
 There are several files and folders:
 
@@ -11,3 +11,7 @@ There are several files and folders:
     * insulin : for insulin data processing
 
     * food : for food data processing
+    
+    * matrices : for matrices prepation 
+    
+    * execution : for the experiments training, validation and test.
