@@ -1,17 +1,19 @@
+# food
 
-("PREPARAR DATOS DE COMIDA")
 
-("-Se genera la gráfica de las comidas procesadas del paciente 1...")
-crear_grafica_comidas_Procesadas(path_comidas_procesadas)
+* PREPARAR DATOS DE COMIDA
 
-("-Se procesa los deltas de comida ...")
-procesaDatosComidas(root, pacientes, posicion_glucosa)      #Error in dia and comidaProcesada shape
+    * Se genera la gráfica de las comidas procesadas del paciente 1...
+        * crear_grafica_comidas_Procesadas()
     
-("-Se genera la gráfica de comida Exponencial ...")
-crear_grafica_comidasExp(path_comidas_exp)
+    * Se procesa los deltas de comida ...
+        * procesaDatosComidas() 
     
-("-Se anade la comida procesada ...")                #Depends of insuline
-anadeComidaProcesada(root, pacientes, posicion_glucosa)
+    * Se genera la gráfica de comida Exponencial ...
+        * crear_grafica_comidasExp()
     
-("-Se procesa los deltas de comida ...")
-crear_grafica_calidad(root, pacientes_all, path_grafica_comidas_calidad)
+    * Se anade la comida procesada ...
+        * anadeComidaProcesada()
+    
+    * Se procesa los deltas de comida ...
+        * crear_grafica_calidad()

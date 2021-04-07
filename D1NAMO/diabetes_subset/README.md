@@ -1,20 +1,32 @@
-#Todos los pacientes
+#diabetes_subset
+There are the files of the patients.
 
-001: bien
+* glucose.csv -> glucose data
 
-002: bien
+* insulin.csv -> insulin data
 
-003: muy pocos datos de aceleración
+* food_dates_00x.csv -> food data
 
-004: bien
+* food.csv-> not used
 
-005: no tiene horas de las comidas
 
-006: bien
+There are different patients:
 
-007: bien 
+* 001: ok
 
-008: bien
+* 002: ok
 
-009: muy pocos datos de aceleración
+* 003: few acceleration data
+
+* 004: ok
+
+* 005: without hours in food
+
+* 006: ok
+
+* 007: ok 
+
+* 008: ok
+
+* 009: few acceleration data
 
