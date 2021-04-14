@@ -48,11 +48,14 @@ def definir_configuracion():
     patient_digit = 1
     print(patient_digit)
     pacientes_relevantes = ['001', '002', '004', '006', '007', '008']    #El 5 no tiene horas de las comidas. El 3 y 9 tienen muy pocos datos de aceleración
-    pacientes = pacientes_relevantes
+    pacientes_id= pacientes_relevantes
+    pacientes  = [1, 2, 4, 6, 7, 8]               #así en food_add
+
 
   else:
     patient_digit = pi
-    pacientes = "['00" + str(patient_digit) + "']"          #pacientes es [00x]
+    pacientes_id = "['00" + str(patient_digit) + "']"          #pacientes_id es ['00x']
+    pacientes = "['" + str(patient_digit) + "']"                #así en food_add
     print(pacientes)
 
 

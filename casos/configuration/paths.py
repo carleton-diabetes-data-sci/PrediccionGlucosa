@@ -79,7 +79,7 @@ def define_paths():
 
 
     path_gai_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
+                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesados.csv',   #cambiar por path_gai_dataset_processed
                                 path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
                                 path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
                                 path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
@@ -97,7 +97,7 @@ def define_paths():
                                 path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
                                 path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
                                 path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '_comidas_procesadas.csv',
+                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
                                 path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
                                 path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv']  # PATH
 

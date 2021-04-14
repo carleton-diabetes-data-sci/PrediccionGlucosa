@@ -1,34 +1,36 @@
-def anadeComidaProcesada(cn, pi, patient_digit, path_full_dataset_processed, posicion_glucosa, pacientes):
+import pandas as pd
+import numpy as np
+import datetime as tm
+import math
+
+
+
+def anadeComidaProcesada(cn, pi, patient_digit, path_gai_dataset_processed, path_food_dataset_processed,  path_full_dataset_processed, posicion_glucosa, pacientes):
     print("--FOOD_ADD_ AÑADIR LA INFORMACIÖN DE LA COMIDA PROCESADA A LA TABLA DE TODOS LOS DATOS PROCESADOS, 1 POR PACIENTE")
 
     print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")
-    print("--Definir el path para importar datos de comida procesada...")
-    path_fichero_comidas_procesadas = path_food_dataset_processed[patient_digit - 1]
-    print(path_fichero_comidas_procesadas)  # PATH
 
-    print("--Definir el path para importar el resto de datos...")
-    path_fichero_datos_procesados = path_food_dataset_processed[patient_digit - 1]
-    print(path_fichero_comidas_procesadas)  # PATH
+    for paciente in pacientes:                                           #Se importa y guarda separando en pacientes
+        print("--Definir el path para importar datos de comida procesada...")
+        path_fichero_comidas_procesadas = path_food_dataset_processed[paciente-1]
+        print(path_fichero_comidas_procesadas)  # PATH
 
-    print("--Definir el path para guardar la tabla con todos los datos de glucosa, aceleración e insulina procesados...")
-    path_comidas_exp = path_food_graphs + '\Caso_' + str(cn) + '_comidasExponential_paciente_00' + str(
-        patient_digit) + '.png'  # PATH
+        print("--Definir el path para importar el resto de datos...")
+        path_fichero_gai_procesados = path_gai_dataset_processed[paciente-1]   #cambiar por path_gai_dataset_processed
+        print(path_fichero_gai_procesados)  # PATH
 
-    print("--Importamos ficheros...")
-    comidas_procesadas = pd.read_csv(path_fichero_comidas_procesadas)
-    datosProcesados = pd.read_csv(root + paciente + '/datos_procesados.csv')          #cambiar a gai_procesados.csv para distinguir de todos_datos_procesados.csv
-    comidas_procesadas = pd.read_csv(root + paciente + '/comidas_procesadas.csv')
+        print("--Definir el path para guardar la tabla con todos los datos de glucosa, aceleración e insulina procesados...")
+        path_anadecomida = path_full_dataset_processed[paciente-1]         # PATH
 
+        print("--Importamos ficheros...")
+        comidas_procesadas = pd.read_csv(path_fichero_comidas_procesadas)
+        datosProcesados = pd.read_csv(path_fichero_gai_procesados)          #cambiar a gai_procesados.csv para distinguir de todos_datos_procesados.csv
 
-
-    for paciente in pacientes:
-        # if (paciente == '001'):
-        datosProcesados = pd.read_csv(root + paciente + '/datos_procesados.csv')
-
-        comidas_procesadas = pd.read_csv(root + paciente + '/comidas_procesadas.csv')
 
         print('paciente: ', paciente)
-        print('Tamaño del csv de insulin: ', comidas_procesadas.shape)
+        print('Tamaño del csv de comidas procesadas: ', comidas_procesadas.shape)
+        print('Tamaño del csv de datos procesados gai previo a comida: ', datosProcesados.shape)
+
 
         dataList = []
 
@@ -66,5 +68,5 @@ def anadeComidaProcesada(cn, pi, patient_digit, path_full_dataset_processed, pos
                                    'Slow_insulin_process_exp', 'Delta_calories', 'Calories_exp', 'Fast_insulin_lispro',
                                    'Slow_insulin_regular', 'Fast_insulin_profile', 'Slow_insulin_profile'])
         # print(df['Delta_calories'])
-        df.to_csv(root + paciente + '/datos_procesados.csv', index=False)
-        df.to_csv(path_full_dataset_processed[], index=False)
+        #df.to_csv(root + paciente + '/datos_procesados.csv', index=False)
+        df.to_csv(path_anadecomida, index=False)
