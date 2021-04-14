@@ -125,7 +125,7 @@ def crear_grafica_aceleracion(root, path_grafica):
     # Creates two subplots and unpacks the output array immediately
     f, (ax1, ax2, ax3) = plt.subplots(1, 3, sharey=True, figsize=(18, 4))
 
-    ax1.set_title('Patient 1 non processed glucose_acceleration')
+    ax1.set_title('Patient 1 non processed_subset glucose_acceleration')
     ax1.set(xlabel='Time instant (sample)', ylabel='Acceleration (gal)')
     ax1.margins(0.05)  # Default margin is 0.05, value 0 means fit
     ax1.plot(eje_x, aceleracionV, color='red', label='Vertical accel')

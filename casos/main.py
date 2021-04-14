@@ -6,14 +6,14 @@ from casos.food.food import bloque_comida
 
 
 print("MAIN: BLOQUE CONFIGURACIÓN...")
-path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, pacientes = bloque_parametros()
+path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = bloque_parametros()
 print("MAIN: BLOQUE GLUCOSA Y ACELERACIÓN...")
-#bloque_glucosa_aceleracion(cn, pi, path_glucose_acceleration_graphs, path_glucose_dataset, pacientes)
+#bloque_glucosa_aceleracion(cn, patient_id, path_glucose_acceleration_graphs, path_glucose_dataset, pacientes)
 print("MAIN: BLOQUE INSULINA...")
-signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin = bloque_insulina(cn, pi, path_insulin_graphs, path_insulin_dataset)
-#bloque_insulina_2(signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin)
+#signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin = bloque_insulina(cn, pi, path_insulin_graphs, path_insulin_dataset)
+#bloque_insulina_2(cn, patient_id, signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin)
 print("MAIN: BLOQUE COMIDA...")
-#bloque_comida(root, pacientes, posicion_glucosa)
+bloque_comida(cn, pi, patient_digit, path_food_graphs, path_food_dataset, path_food_dataset_processed, posicion_glucosa, pacientes)
 
 """
 print("MAIN: BLOQUE EJECUCIÓN...")

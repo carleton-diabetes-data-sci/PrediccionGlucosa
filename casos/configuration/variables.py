@@ -92,6 +92,8 @@ def parser_variables():
     #print("cn is ", cn)
     cn, en, tn, ph, pn, pi, st, a, fw = switch_cases(cn)
     #print("cn:", cn, "en:", en, "tn:", tn, "ph:", ph, "pn:", pn, "pi:", pi, "st:", st, "a:", a, "fw:", fw)
+
+
     return cn, en, tn, ph, pn, pi, st, a, fw
 
 #parser_variables()

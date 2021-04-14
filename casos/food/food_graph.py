@@ -1,45 +1,35 @@
-def crear_grafica_comidasExp(path_comidas_exp):
-  comidas_procesadas = pd.read_csv(root+'001'+'/comidas_procesadas.csv')
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
-  eje_x = np.arange(comidas_procesadas.shape[0])
-  print(eje_x.shape)
+def crear_grafica_comidasExp(cn, pi, patient_digit, path_food_graphs, path_food_dataset_processed, posicion_glucosa, pacientes):
+    print("--FOOD_GRAPH_ CREAR GRÁFICA DE EXPONENCIALES DE COMIDA PARA 1 PACIENTE")
 
-  fig, ax = plt.subplots()
-  ax.plot(eje_x, comidas_procesadas['calories_exp'], color='blue', label='Calories')
-  plt.title('Patient 1 Calorie absorption')
-  plt.xlabel('Time instant (min)')
-  plt.ylabel('Calories (cal)')
-  leg = ax.legend()
+    print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")
+    print("--Definir el path para importar datos de comida procesada...")
+    path_fichero_comidas_procesadas = path_food_dataset_processed[patient_digit-1]
+    print(path_fichero_comidas_procesadas)                                       #PATH
+
+    print("--Definir el path para guardar la gráfica...")
+    path_comidas_exp = path_food_graphs + '\Caso_' + str(cn) + '_comidasExponential_paciente_00' + str(patient_digit) + '.png'            #PATH
+
+    print("--Importamos fichero...")
+    comidas_procesadas = pd.read_csv(path_fichero_comidas_procesadas)
 
 
-  plt.savefig(path_comidas_exp)
+    eje_x = np.arange(comidas_procesadas.shape[0])
+    print(eje_x.shape)
 
-  plt.show()
-
-
-def crear_grafica_calidad(root, pacientes_all, path_grafica):
-    q = []
-    c = []
-    for paciente in pacientes_all:
-        comidas = pd.read_csv(root + paciente + '/food_dates_' + paciente + '.csv')
-        comidas_filtrado = comidas[['quality', 'calories']]  # Taking a subset of columns
-        # print(tabulate(comidas_filtrado, headers='keys', tablefmt='psql'))
-        for index, row in comidas.iterrows():
-            q.append(row["quality"])
-        for index, row in comidas.iterrows():
-            c.append(row["calories"])
-    print(q)
-    print(c)
-    sns.set_theme(style="ticks", color_codes=True)
-    ax = sns.catplot(x=q, y=c, data=comidas, kind='swarm', order=["Low quality", "Medium quality", "Good quality"])
-
-    plt.title('Patients 1 to 9 Food calorie vs quality')
-    plt.xlabel('Food quality')
+    fig, ax = plt.subplots()
+    ax.plot(eje_x, comidas_procesadas['calories_exp'], color='blue', label='Calories')
+    plt.title('Calorie absorption (Patient '+str(patient_digit)+')')
+    plt.xlabel('Time instant (min)')
     plt.ylabel('Calories (cal)')
-    # leg = ax.legend()
+    leg = ax.legend()
+
+    plt.savefig(path_comidas_exp)
 
     plt.show()
 
-    plt.savefig(path_grafica)
 
 
