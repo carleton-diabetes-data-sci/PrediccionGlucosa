@@ -102,7 +102,7 @@ def define_paths():
                                 path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv']  # PATH
 
     path_full_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
+                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',  #_ or not
                                 path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
                                 path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
                                 path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',

@@ -51,11 +51,14 @@ def definir_configuracion():
     pacientes_id= pacientes_relevantes
     pacientes  = [1, 2, 4, 6, 7, 8]               #así en food_add
 
+  if (pi==-1):
+    patient_digit = 1
+    pacientes = [1, 2, 4, 6, 7, 8]
 
   else:
     patient_digit = pi
     pacientes_id = "['00" + str(patient_digit) + "']"          #pacientes_id es ['00x']
-    pacientes = "['" + str(patient_digit) + "']"                #así en food_add
+    pacientes = [patient_digit]                #así en food_add
     print(pacientes)
 
 
@@ -66,8 +69,6 @@ def definir_configuracion():
                               '005': ['30–39', 'Man', '180–189', '80–89'], '006': ['30–39', 'Man', '190–199', '70–79'],
                               '007': ['30–39', 'Woman', '160–169', '70–79'], '008': ['60–69', 'Woman', '150–159', '50–59'],
                               '009': ['70–79', 'Woman', '160–169', '50–59']}
-
-
 
 
 

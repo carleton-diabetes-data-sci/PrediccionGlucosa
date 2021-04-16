@@ -5,7 +5,7 @@ def case_zero():
     tn=7
     ph=12
     pn=1
-    pi=1
+    pi=-1        #1 or -1    #1, 2, 4, 6, 7, 8 separado
     st=0
     a=1
     fw=1

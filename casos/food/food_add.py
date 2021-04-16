@@ -6,7 +6,7 @@ import math
 
 
 def anadeComidaProcesada(cn, pi, patient_digit, path_gai_dataset_processed, path_food_dataset_processed,  path_full_dataset_processed, posicion_glucosa, pacientes):
-    print("--FOOD_ADD_ AÑADIR LA INFORMACIÖN DE LA COMIDA PROCESADA A LA TABLA DE TODOS LOS DATOS PROCESADOS, 1 POR PACIENTE")
+    print("--FOOD_ADD_ AÑADIR LA INFORMACION DE LA COMIDA PROCESADA A LA TABLA DE TODOS LOS DATOS PROCESADOS, 1 POR PACIENTE")
 
     print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")
 
