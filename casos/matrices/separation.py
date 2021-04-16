@@ -21,10 +21,8 @@ def separar_x_y(x ,y):
     # print(y.shape)   #(2738,)
 
     xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0)
-    print \
-        (xTrain.shape)    # (2190, 24, 14)  [[[7.40000000e+00 4.21584213e+01 0.00000000e+00 ... 0.00000000e+00   5.76909235e-02 2.60332989e+00]
-    print \
-        (xTest.shape)     # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
+    print (xTrain.shape)    # (2190, 24, 14)  [[[7.40000000e+00 4.21584213e+01 0.00000000e+00 ... 0.00000000e+00   5.76909235e-02 2.60332989e+00]
+    print (xTest.shape)     # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
     print(yTrain.shape)    # (2190,)            [ 3.7 11.5  4.6 ...  7.2  4.6  4.6]
     print(yTest.shape)      # (548,)    [ 6.3  6.9  8.   4.3  ... 6.3 22.2  2.5 13.5   5.5 16.3]
 
@@ -134,8 +132,8 @@ def divideDatos(xDiv):
 def bloque_dividir_datos(xTrain, xVal, xTest):
     xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles = divideDatos(
         xTrain)
-    print('xTrain_glucose tiene un tamaño: ', xTrain_glucose.shape)
-    print('xTrain_Accel tiene un tamaño: ', xTrain_Accel.shape)
+    #print('xTrain_glucose tiene un tamaño: ', xTrain_glucose.shape)
+    #print('xTrain_Accel tiene un tamaño: ', xTrain_Accel.shape)
     # print('xTrain_DeltaInsulin tiene un tamaño: ',xTrain_DeltaInsulin.shape)
     # print('xTrain_Insulin tiene un tamaño: ',xTrain_Insulin.shape)
     # xTrain_Insulin_lispro

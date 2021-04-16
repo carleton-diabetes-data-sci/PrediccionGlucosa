@@ -9,13 +9,13 @@ from casos.matrices.separation import bloque_dividir_datos
 
 
 def bloque_ejecucion(cn, pi, path_full_dataset_processed, path_scores_dataset_processed, execution_number, pacientes, posicion_glucosa):
+    print("-EXECUTION: BLOQUE EJECUCIÓN...")
     for paciente in pacientes:
         path_fichero_full_procesados = path_full_dataset_processed[paciente - 1]  # cambiar por path_gai_dataset_processed
         datosProcesados = pd.read_csv(path_fichero_full_procesados)
         print('paciente: ', paciente)
         print('Tamaño del csv de datos procesados gai previo a comida: ', datosProcesados.shape)
 
-        print("MAIN: BLOQUE EJECUCIÓN...")
         #execution_number = 10
         execution_list = []
 

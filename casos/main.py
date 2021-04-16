@@ -44,6 +44,6 @@ print("MAIN: BLOQUE COMIDA...")
 print("MAIN: BLOQUE EJECUCIÓN...")
 #bloque_ejecucion(cn, pi, path_full_dataset_processed, path_scores_dataset_processed, execution_number, pacientes, posicion_glucosa)
 print("MAIN: MEDIA DE RESULTADOS DE VARIOS PACIENTES...")
-media_resultados_pacientes(path_scores_dataset_processed, pacientes)
+media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
 
 
