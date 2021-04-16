@@ -12,6 +12,7 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     scores_pat_6 = []
     scores_pat_7 = []
     scores_pat_8 = []
+    index_list = []
 
     pacientes = [1,2,4,6,7,8]
     for paciente in pacientes:
