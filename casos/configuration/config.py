@@ -22,12 +22,16 @@ import seaborn as sns
 
 from casos.configuration.paths import define_paths
 from casos.configuration.variables import parser_variables
+from casos.configuration.model import define_model_hiperparameters
 
 
 def definir_configuracion():
   print("-Definir los path...")
   path_project,  path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed = define_paths()
   print("path_project: ", path_project,  "path_glucose_acceleration_graphs: ", path_glucose_acceleration_graphs, "path_insulin_graphs: ", path_insulin_graphs, "path_food_graphs: ", path_food_graphs, "path_dataset: ", path_dataset, "path_glucose_dataset: ", path_glucose_dataset, "path_acceleration_dataset: ", path_acceleration_dataset, "path_insulin_dataset: ", path_insulin_dataset, "path_food_dataset: ",  path_food_dataset)
+
+  print("-Definir los hiperparámetros del modelo LSTM")
+  units, epochs, batch_size, adam_opt = define_model_hiperparameters()
 
   print("-Definir el caso de investigación con sus parámetros")
   cn, en, tn, ph, pn, pi, st, a, fw = parser_variables()
@@ -72,12 +76,12 @@ def definir_configuracion():
 
 
 
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, units, epochs, batch_size, adam_opt, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 
 
 
 def bloque_parametros():
   print("-CONFIG: DEFINIR PARÁMETROS DE CONFIGURACION")
-  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = definir_configuracion()
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
+  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, units, epochs, batch_size, adam_opt, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = definir_configuracion()
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, units, epochs, batch_size, adam_opt, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 

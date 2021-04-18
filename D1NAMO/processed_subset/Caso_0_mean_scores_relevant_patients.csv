@@ -1,8 +1,8 @@
-,score_exp_1,score_exp_2,score_exp_3,score_exp_4,score_exp_5,score_exp_6,score_exp_7
-mean_patient_1,1,1,1,1,1,1,1
-mean_patient_2,1,1,1,1,1,1,1
-mean_patient_4,1,1,1,1,1,1,1
-mean_patient_6,1,1,1,1,1,1,1
-mean_patient_7,1,1,1,1,1,1,1
-mean_patient_8,1,1,1,1,1,1,1
-mean_mean_relevant_patients_case_0,1,1,1,1,1,1,1
+GLOBAL_MEAN,score_exp_1,score_exp_2,score_exp_3,score_exp_4,score_exp_5,score_exp_6,score_exp_7
+mean_10_case_0_patient_1,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_10_case_0_patient_2,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_10_case_0_patient_4,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_10_case_0_patient_6,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_10_case_0_patient_7,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_10_case_0_patient_8,3.0,4.0,5.0,6.0,7.0,8.0,9.0
+mean_mean_relevant_patients_case_0,3.0,4.0,5.0,6.0,7.0,8.0,9.0

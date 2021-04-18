@@ -103,14 +103,14 @@ def define_paths():
 
     path_full_dataset_processed = [
                                 path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',  #_ or not
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesados.csv']  # PATH
+                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
+                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv']  # PATH
 
     path_scores_dataset_processed = [
                                 path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
@@ -122,7 +122,9 @@ def define_paths():
                                 path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
                                 path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
                                 path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv']  # PATH
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',  # PATH
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv', # PATH
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv']  # PATH
 
     #print(path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed, path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed)
 
