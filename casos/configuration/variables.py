@@ -1,7 +1,7 @@
 import argparse
 
 def case_zero():
-    en=10
+    en=10  #10 or 1
     tn=7
     ph=12
     pn=1

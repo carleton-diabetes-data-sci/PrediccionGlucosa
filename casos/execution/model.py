@@ -27,26 +27,25 @@ def root_mean_squared_error(y_true, y_pred):
 
 
 
-def ejecutaModeloSinPrint(xTrain, yTrain, xVal, yVal, xTest, yTest):
+def ejecutaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, xTrain, yTrain, xVal, yVal, xTest, yTest):
     model = Sequential()
-    model.add(LSTM(units=56, input_shape=(xTrain.shape[1], xTrain.shape[2])))
+    model.add(LSTM(units=units, input_shape=(xTrain.shape[1], xTrain.shape[2])))
     model.add(Dense(units=1))
 
-    model.compile(loss=root_mean_squared_error, optimizer=keras.optimizers.Adam(0.001))      #solo 1 vez
+    model.compile(loss=root_mean_squared_error, optimizer=keras.optimizers.Adam(adam_opt))      #solo 1 vez
 
-    history = model.fit(xTrain, yTrain, epochs=150, batch_size=16, validation_data=(xVal, yVal), verbose=0, shuffle=False)         #de nuevo al importar el modelo de otro paciente
+    history = model.fit(xTrain, yTrain, epochs=epochs, batch_size=batch_size, validation_data=(xVal, yVal), verbose=0, shuffle=False)         #de nuevo al importar el modelo de otro paciente
 
     y_pred = model.predict(xTest)
     score = model.evaluate(xTest, yTest)
 
     # Guardar el Modelo
-    model.save('path_to_my_model.h5')
-
+    """if caso 1, si no pacientes cambia"""
+    model.save(path_models_saved + '\Caso_' + str(cn) + '\execution_' + str(en) + '_case_' + str(cn) + '_patient_' + str(paciente) + '_experiment_' + str(exe) + '_model.h5')
     # Recrea exactamente el mismo modelo solo desde el archivo
-    new_model = keras.models.load_model('path_to_my_model.h5')
-    history = new_model.fit(xTrain, yTrain, epochs=150, batch_size=16, validation_data=(xVal, yVal), verbose=0,
-                        shuffle=False)
-    y_pred = new_model.predict(xTest)
-    score = new_model.evaluate(xTest, yTest)
+    #new_model = keras.models.load_model('path_to_my_model.h5')
+    #history = new_model.fit(xTrain, yTrain, epochs=epochs, batch_size=batch_size, validation_data=(xVal, yVal), verbose=0, shuffle=False)
+    #y_pred = new_model.predict(xTest)
+    # = new_model.evaluate(xTest, yTest)
 
     return y_pred, score
