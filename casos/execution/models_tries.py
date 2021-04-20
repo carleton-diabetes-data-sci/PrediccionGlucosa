@@ -24,14 +24,14 @@ def bloque_guardar_modelos_experimentos(cargar, units, epochs, batch_size, adam_
         guardar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_Insulin_comidasExp_profiles, yTrain, xVal_Insulin_comidasExp_profiles, yVal, xTest_Insulin_comidasExp_profiles, yTest)
 
 
-    #Save time in a file
-    t=[]
-    t.append([time.time() - start_time])
-    df = pd.DataFrame(t, columns=['train_model_time (s)'])
-    #print(df)
-    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_save_time.csv'
-    df.to_csv(path, index=False)
-    print("--- bloque_guardar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
+        #Save time in a file
+        t=[]
+        t.append([time.time() - start_time])
+        df = pd.DataFrame(t, columns=['train_model_time (s)'])
+        #print(df)
+        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_save_time.csv'
+        df.to_csv(path, index=False)
+        print("--- bloque_guardar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
 
 
 
@@ -63,6 +63,16 @@ def bloque_cargar_modelos_experimentos(cargar, listaScores, units, epochs, batch
         try_number = 7
         y_pred_exp_7, score_exp_7 = cargar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_Insulin_comidasExp_profiles, yTrain, xVal_Insulin_comidasExp_profiles, yVal, xTest_Insulin_comidasExp_profiles, yTest)
 
+        # Save time in a file
+        t = []
+        t.append([time.time() - start_time])
+        df = pd.DataFrame(t, columns=['load_model_time (s)'])
+        # print(df)
+        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(
+            paciente) + '_execution_' + str(exe) + '_load_time.csv'
+        df.to_csv(path, index=False)
+        print("--- bloque_cargar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
+
     elif(cargar==0):
         y_pred_exp_1, score_exp_1 = 1, 3
         y_pred_exp_2, score_exp_2 = 1, 4
@@ -90,13 +100,6 @@ def bloque_cargar_modelos_experimentos(cargar, listaScores, units, epochs, batch
 
     listaScores.append([score_exp_1, score_exp_2, score_exp_3, score_exp_4, score_exp_5, score_exp_6, score_exp_7])
 
-    # Save time in a file
-    t = []
-    t.append([time.time() - start_time])
-    df = pd.DataFrame(t, columns=['load_model_time (s)'])
-    # print(df)
-    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_load_time.csv'
-    df.to_csv(path, index=False)
-    print("--- bloque_cargar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
+
 
     return listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7
