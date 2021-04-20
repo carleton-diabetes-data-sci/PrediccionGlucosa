@@ -42,90 +42,114 @@ def separar_x_y(x ,y):
 
 
 def divideDatos(xDiv):
-    xDiv_glucose = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 1))  # change dimensions
-    xDiv_Accel = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1))
-    xDiv_DeltaInsulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_lispro_regular = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_exp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_comidasDeltas = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasDeltas_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
+    #ac = 1 or 0
+    ac=1
+    xDiv_glucose = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1))  # change dimensions
+    xDiv_Accel = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1+ac))
+    xDiv_DeltaInsulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin_lispro_regular = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin_exp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 2+ac))
+    xDiv_Insulin_comidasDeltas = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_comidasDeltas_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_comidasExp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_comidasExp_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_comidasExp_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
 
     for x in range(xDiv.shape[0]):
         for y in range(xDiv.shape[1]):
+
+            #Glucose model
             xDiv_glucose[x][y] = xDiv[x][y][0]
 
+            #Glucose+acceleration model
             xDiv_Accel[x][y][0] = xDiv[x][y][0]
-            # xDiv_Accel[x][y][1] = xDiv[x][y][1]
+            if(ac==1):
+                xDiv_Accel[x][y][1] = xDiv[x][y][1]
 
-            xDiv_DeltaInsulin[x][y][0] = xDiv[x][y][0]  # exp 1
-            # xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][1]
-            xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][2]
-            xDiv_DeltaInsulin[x][y][2] = xDiv[x][y][3]
+            #Try 1: glucose+acceleration+2+3
+            xDiv_DeltaInsulin[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][1]
+            xDiv_DeltaInsulin[x][y][ac+1] = xDiv[x][y][2]
+            xDiv_DeltaInsulin[x][y][ac+2] = xDiv[x][y][3]
 
-            xDiv_Insulin[x][y][0] = xDiv[x][y][0]  # exp 2
-            # xDiv_Insulin[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin[x][y][2] = xDiv[x][y][5]
+            #Try 2: glucose+acceleration+4+5
+            xDiv_Insulin[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin[x][y][ac+2] = xDiv[x][y][5]
 
-            xDiv_Insulin_lispro[x][y][0] = xDiv[x][y][0]  # michaelis y exponentials  exp 3
-            # xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][5]
-            xDiv_Insulin_lispro[x][y][2] = xDiv[x][y][10]
+            #Try 3: glucose+acceleration+Michaelis+exponentials
+            xDiv_Insulin_lispro[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_lispro[x][y][ac+1] = xDiv[x][y][5]
+            xDiv_Insulin_lispro[x][y][ac+2] = xDiv[x][y][10]
 
-            xDiv_Insulin_lispro_regular[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][11]
-            xDiv_Insulin_lispro_regular[x][y][2] = xDiv[x][y][10]
+            #Bad model: glucose+acceleration+11+10
+            xDiv_Insulin_lispro_regular[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_lispro_regular[x][y][ac+1] = xDiv[x][y][11]
+            xDiv_Insulin_lispro_regular[x][y][ac+2] = xDiv[x][y][10]
 
-            xDiv_Insulin_profiles[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_profiles[x][y][2] = xDiv[x][y][13]
+            #Bad model: glucose+acceleration+12+13
+            xDiv_Insulin_profiles[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_profiles[x][y][ac+2] = xDiv[x][y][13]
 
-            xDiv_Insulin_exp[x][y][0] = xDiv[x][y][0]  # NO sirve
-            # xDiv_Insulin_exp[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_exp[x][y][1] = xDiv[x][y][6]
-            xDiv_Insulin_exp[x][y][2] = xDiv[x][y][7]
+            #Bad model: glucose+acceleration+6+7
+            xDiv_Insulin_exp[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_exp[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_exp[x][y][ac+1] = xDiv[x][y][6]
+            xDiv_Insulin_exp[x][y][ac+2] = xDiv[x][y][7]
 
-            xDiv_Insulin_comidasDeltas[x][y][0] = xDiv[x][y][0]  # exp 4
-            # xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin_comidasDeltas[x][y][2] = xDiv[x][y][5]
-            xDiv_Insulin_comidasDeltas[x][y][3] = xDiv[x][y][8]  # all in 0
+            #Try 4: glucose+acceleration+4+5+8
+            xDiv_Insulin_comidasDeltas[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasDeltas[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin_comidasDeltas[x][y][ac+2] = xDiv[x][y][5]
+            xDiv_Insulin_comidasDeltas[x][y][ac+3] = xDiv[x][y][8]  # all in 0
 
-            xDiv_Insulin_comidasDeltas_profiles[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][2] = xDiv[x][y][13]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][3] = xDiv[x][y][8]
+            #Bad model: glucose+acceleration+12+13+8
+            xDiv_Insulin_comidasDeltas_profiles[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+2] = xDiv[x][y][13]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+3] = xDiv[x][y][8]
 
-            xDiv_Insulin_comidasExp[x][y][0] = xDiv[x][y][0]  # exp 5
-            # xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin_comidasExp[x][y][2] = xDiv[x][y][5]
-            xDiv_Insulin_comidasExp[x][y][3] = xDiv[x][y][9]
+            #Try 5: glucose+acceleration+4+5+9
+            xDiv_Insulin_comidasExp[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin_comidasExp[x][y][ac+2] = xDiv[x][y][5]
+            xDiv_Insulin_comidasExp[x][y][ac+3] = xDiv[x][y][9]
 
-            xDiv_Insulin_comidasExp_lispro[x][y][0] = xDiv[x][y][0]  # menten 6
-            # xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][5]
-            xDiv_Insulin_comidasExp_lispro[x][y][2] = xDiv[x][y][10]
-            xDiv_Insulin_comidasExp_lispro[x][y][3] = xDiv[x][y][9]
+            #Try 6: glucose+acceleration+5+10+9 (Menten)
+            xDiv_Insulin_comidasExp_lispro[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+1] = xDiv[x][y][5]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+2] = xDiv[x][y][10]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+3] = xDiv[x][y][9]
 
-            xDiv_Insulin_comidasExp_profiles[x][y][0] = xDiv[x][y][0]  # experiment 7
-            # xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_comidasExp_profiles[x][y][2] = xDiv[x][y][13]
-            xDiv_Insulin_comidasExp_profiles[x][y][3] = xDiv[x][y][9]
+            # Try 7: glucose+acceleration+12+13+9 (Profiles of insulin and food)
+            xDiv_Insulin_comidasExp_profiles[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+2] = xDiv[x][y][13]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+3] = xDiv[x][y][9]
 
     return xDiv_glucose, xDiv_Accel, xDiv_DeltaInsulin, xDiv_Insulin, xDiv_Insulin_lispro, xDiv_Insulin_lispro_regular, xDiv_Insulin_profiles, xDiv_Insulin_exp, xDiv_Insulin_comidasDeltas, xDiv_Insulin_comidasDeltas_profiles, xDiv_Insulin_comidasExp, xDiv_Insulin_comidasExp_lispro, xDiv_Insulin_comidasExp_profiles
 

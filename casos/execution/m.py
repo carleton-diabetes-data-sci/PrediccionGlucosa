@@ -1,29 +1,15 @@
-import pandas as pd
-import numpy as np
+
 import pandas as pd
 import numpy as np
 
-import os
-import matplotlib.pyplot as plt
+
 import keras as keras
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
+
 
 from keras.layers import LSTM
-import datetime as tm
-from matplotlib import pyplot
-import math
-from scipy import signal
-
-
-from scipy.fftpack import fft, fftshift
-
-from tabulate import tabulate
-#!pip install seaborn
-import seaborn as sns
-
 from keras import backend as K
 
 
@@ -98,7 +84,201 @@ path_scores_dataset_processed = [
                                 path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv']  # PATH
 
 
-def bloque_matriz(path_full_dataset_processed, pacientes, posicion_glucosa):
+
+
+
+
+def separar_train_val_test(x ,y, paciente):
+    """
+    :param x:
+    :param y:
+    :return:
+
+    Separamos en test y train
+    Dividimos los datos en test, entrenamiento y validación para entrenar, validar y testear el modelo.
+
+    *   Datos de entrenamiento: se utilizan para entrenar el modelo. El modelo aprenderá de estos datos.
+    *   Datos de validación: se utilizan para proporcionar una evaluación imparcial del modelo de datos mientras se ajustan los hiperparámetros del modelo.
+    *   Datos de test: conjunto de datos utilizados para proporcionar una evaluación imparcial del modelo final.
+    """
+    dimension_x_y_list=[]
+    # print(x.shape)   #(2738, 24, 14)
+    # print(y.shape)   #(2738,)
+
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0)
+    #print('Tamaño de xTrain: ', xTrain.shape)  # (2190, 24, 14)  [[[7.40000000e+00 4.21584213e+01 0.00000000e+00 ... 0.00000000e+00   5.76909235e-02 2.60332989e+00]
+    #print('Tamaño de yTrain: ', yTrain.shape)    # (2190,)            [ 3.7 11.5  4.6 ...  7.2  4.6  4.6]
+    print('Tamaño de xTest: ', xTest.shape)  # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
+    print('Tamaño de yTest: ', yTest.shape)   # (548,)    [ 6.3  6.9  8.   4.3  ... 6.3 22.2  2.5 13.5   5.5 16.3]
+
+
+    xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size = 0.25, random_state = 0)
+    print('Tamaño de xTrain: ', xTrain.shape)     # (1642, 24, 14)
+    print('Tamaño de yTrain: ', yTrain.shape)
+    print('Tamaño de xVal: ', xVal.shape) # (548, 24, 14)
+    print('Tamaño de yVal: ', yVal.shape)  # (548,)
+
+    print('Tamaño de x, xTrain, xVal y xTest: ', x.shape, xTrain.shape, xVal.shape, xTest.shape)   # patient 1 Caso 0 (665, 24, 14) (399, 24, 14) (133, 24, 14) (133, 24, 14)
+    #all patients Caso 1 (3516, 24, 14), (1172, 24, 14), (1172, 24, 14)
+
+    dimension_x_y_list.append([x.shape, y.shape, xTrain.shape, yTrain.shape, xVal.shape, yVal.shape, xTest.shape, yTest.shape])
+    df = pd.DataFrame(np.array(dimension_x_y_list), columns=['x', 'y', 'xTrain', 'yTrain', 'xVal', 'yVal', 'xTest', 'yTest'])
+
+    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
+    df.to_csv(path, index=False)
+
+    return xTrain, xVal, xTest, yTrain, yVal, yTest
+
+
+
+def divideDatos(xDiv):
+    #ac = 1 or 0
+    ac=1
+    xDiv_glucose = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1))  # change dimensions
+    xDiv_Accel = np.zeros(xDiv.shape[0] * xDiv.shape[1]*(ac+1)).reshape((xDiv.shape[0], xDiv.shape[1], 1+ac))
+    xDiv_DeltaInsulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_lispro_regular = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_exp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
+    xDiv_Insulin_comidasDeltas = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+4)).reshape((xDiv.shape[0], xDiv.shape[1], 4+ac))
+    xDiv_Insulin_comidasDeltas_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+4)).reshape((xDiv.shape[0], xDiv.shape[1], 4+ac))
+    xDiv_Insulin_comidasExp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+4)).reshape((xDiv.shape[0], xDiv.shape[1], 4+ac))
+    xDiv_Insulin_comidasExp_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+4)).reshape((xDiv.shape[0], xDiv.shape[1], 4+ac))
+    xDiv_Insulin_comidasExp_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+4)).reshape((xDiv.shape[0], xDiv.shape[1], 4+ac))
+
+    for x in range(xDiv.shape[0]):
+        for y in range(xDiv.shape[1]):
+
+            #Glucose model
+            xDiv_glucose[x][y] = xDiv[x][y][0]
+
+            #Glucose+acceleration model
+            xDiv_Accel[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Accel[x][y][1] = xDiv[x][y][1]
+
+            #Try 1: glucose+acceleration+2+3
+            xDiv_DeltaInsulin[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][1]
+            xDiv_DeltaInsulin[x][y][ac+1] = xDiv[x][y][2]
+            xDiv_DeltaInsulin[x][y][ac+2] = xDiv[x][y][3]
+
+            #Try 2: glucose+acceleration+4+5
+            xDiv_Insulin[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin[x][y][ac+2] = xDiv[x][y][5]
+
+            #Try 3: glucose+acceleration+Michaelis+exponentials
+            xDiv_Insulin_lispro[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_lispro[x][y][ac+1] = xDiv[x][y][5]
+            xDiv_Insulin_lispro[x][y][ac+2] = xDiv[x][y][10]
+
+            #Bad model: glucose+acceleration+11+10
+            xDiv_Insulin_lispro_regular[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_lispro_regular[x][y][ac+1] = xDiv[x][y][11]
+            xDiv_Insulin_lispro_regular[x][y][ac+2] = xDiv[x][y][10]
+
+            #Bad model: glucose+acceleration+12+13
+            xDiv_Insulin_profiles[x][y][0] = xDiv[x][y][0]
+            if(ac==1):
+                xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_profiles[x][y][ac+2] = xDiv[x][y][13]
+
+            #Bad model: glucose+acceleration+6+7
+            xDiv_Insulin_exp[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_exp[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_exp[x][y][ac+1] = xDiv[x][y][6]
+            xDiv_Insulin_exp[x][y][ac+2] = xDiv[x][y][7]
+
+            #Try 4: glucose+acceleration+4+5+8
+            xDiv_Insulin_comidasDeltas[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasDeltas[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin_comidasDeltas[x][y][ac+2] = xDiv[x][y][5]
+            xDiv_Insulin_comidasDeltas[x][y][ac+3] = xDiv[x][y][8]  # all in 0
+
+            #Bad model: glucose+acceleration+12+13+8
+            xDiv_Insulin_comidasDeltas_profiles[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+2] = xDiv[x][y][13]
+            xDiv_Insulin_comidasDeltas_profiles[x][y][ac+3] = xDiv[x][y][8]
+
+            #Try 5: glucose+acceleration+4+5+9
+            xDiv_Insulin_comidasExp[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp[x][y][ac+1] = xDiv[x][y][4]
+            xDiv_Insulin_comidasExp[x][y][ac+2] = xDiv[x][y][5]
+            xDiv_Insulin_comidasExp[x][y][ac+3] = xDiv[x][y][9]
+
+            #Try 6: glucose+acceleration+5+10+9 (Menten)
+            xDiv_Insulin_comidasExp_lispro[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+1] = xDiv[x][y][5]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+2] = xDiv[x][y][10]
+            xDiv_Insulin_comidasExp_lispro[x][y][ac+3] = xDiv[x][y][9]
+
+            # Try 7: glucose+acceleration+12+13+9 (Profiles of insulin and food)
+            xDiv_Insulin_comidasExp_profiles[x][y][0] = xDiv[x][y][0]
+            if (ac == 1):
+                xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][1]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+1] = xDiv[x][y][12]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+2] = xDiv[x][y][13]
+            xDiv_Insulin_comidasExp_profiles[x][y][ac+3] = xDiv[x][y][9]
+
+    return xDiv_glucose, xDiv_Accel, xDiv_DeltaInsulin, xDiv_Insulin, xDiv_Insulin_lispro, xDiv_Insulin_lispro_regular, xDiv_Insulin_profiles, xDiv_Insulin_exp, xDiv_Insulin_comidasDeltas, xDiv_Insulin_comidasDeltas_profiles, xDiv_Insulin_comidasExp, xDiv_Insulin_comidasExp_lispro, xDiv_Insulin_comidasExp_profiles
+
+def bloque_dividir_datos(xTrain, xVal, xTest):
+    xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles = divideDatos(xTrain)
+
+    # print('xTrain_try_1 tiene un tamaño: ',xTrain_DeltaInsulin.shape)
+    # print('xTrain_try_2 tiene un tamaño: ',xTrain_Insulin.shape)
+    # print('xTrain_try_3 tiene un tamaño: ',xTrain_Insulin_lispro.shape)
+    # print('xTrain_try_4 tiene un tamaño: ',xTrain_Insulin_comidasDeltas.shape)
+    # print('xTrain_try_5 tiene un tamaño: ',xTrain_Insulin_comidasExp.shape)
+    # print('xTrain_try_6 tiene un tamaño: ',xTrain_Insulin_comidasExp_lispro.shape)
+    # print('xTrain_try_7 tiene un tamaño: ',xTrain_Insulin_comidasExp_profiles.shape)
+
+    xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles = divideDatos(xVal)
+
+    # print('xVal_try_1 tiene un tamaño: ',xVal_DeltaInsulin.shape)
+    # print('xVal_try_2 tiene un tamaño: ',xVal_Insulin.shape)
+    # print('xVal_try_3 tiene un tamaño: ',xVal_Insulin_lispro.shape)
+    # print('xVal_try_4 tiene un tamaño: ',xVal_Insulin_comidasDeltas.shape)
+    # print('xVal_try_5 tiene un tamaño: ',xVal_Insulin_comidasExp.shape)
+    # print('xVal_try_6 tiene un tamaño: ',xVal_Insulin_comidasExp_lispro.shape)
+    # print('xVal_try_7 tiene un tamaño: ',xVal_Insulin_comidasExp_profiles.shape)
+
+    xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = divideDatos(xTest)
+
+    # print('xTest_try_1 tiene un tamaño: ',xTest_DeltaInsulin.shape)
+    # print('xTest_try_2 tiene un tamaño: ',xTest_Insulin.shape)
+    # print('xTest_try_3 tiene un tamaño: ',xTest_Insulin_lispro.shape)
+    # print('xTest_try_4 tiene un tamaño: ',xTest_Insulin_comidasDeltas.shape)
+    # print('xTest_try_5 tiene un tamaño: ',xTest_Insulin_comidasExp.shape)
+    # print('xTest_try_6 tiene un tamaño: ',xTest_Insulin_comidasExp_lispro.shape)
+    # print('xTest_try_7 tiene un tamaño: ',xTest_Insulin_comidasExp_profiles.shape)
+
+    return xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles
+
+
+
+def bloque_matriz(path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados):
     """
     :param path_full_dataset_processed:
     :param pacientes:
@@ -113,38 +293,41 @@ def bloque_matriz(path_full_dataset_processed, pacientes, posicion_glucosa):
     """
     x_glucose = []
     y_glucose = []
+    dimension_x_y_list = []  #to store the dimension of each try matrices
+    try_1_list= []
+    try_2_list = []
+    try_3_list= []
+    try_4_list = []
+    try_5_list= []
+    try_6_list = []
+    try_7_list= []
 
-    for paciente in pacientes:
-        path_fichero_full_procesados = path_full_dataset_processed[paciente - 1]  # cambiar por path_gai_dataset_processed
-        datosProcesados = pd.read_csv(path_fichero_full_procesados)
-        print('paciente: ', paciente)
-        print('Tamaño del csv de datos procesados gai previo a comida: ', datosProcesados.shape)
 
-        for x in range(datosProcesados.shape[0] - 24 - posicion_glucosa):
+    for x in range(datosProcesados.shape[0] - 24 - posicion_glucosa):
 
-            if datosProcesados['Date'][x] == datosProcesados['Date'][x + 24 + posicion_glucosa]:
+        if datosProcesados['Date'][x] == datosProcesados['Date'][x + 24 + posicion_glucosa]:
 
-                x_muestras = []
+            x_muestras = []
 
-                for y in range(24):
-                    # meto en un array todos mis datos
-                    x_muestras.append([datosProcesados['Glucose'][x + y],
-                                       datosProcesados['Accel'][x + y],
-                                       datosProcesados['Fast_insulin'][x + y],
-                                       datosProcesados['Slow_insulin'][x + y],
-                                       datosProcesados['Fast_insulin_process'][x + y],
-                                       datosProcesados['Slow_insulin_process'][x + y],
-                                       datosProcesados['Fast_insulin_process_exp'][x + y],
-                                       datosProcesados['Slow_insulin_process_exp'][x + y],
-                                       datosProcesados['Delta_calories'][x + y],
-                                       datosProcesados['Calories_exp'][x + y],
-                                       datosProcesados['Fast_insulin_lispro'][x + y],
-                                       datosProcesados['Slow_insulin_regular'][x + y],
-                                       datosProcesados['Fast_insulin_profile'][x + y],
-                                       datosProcesados['Slow_insulin_profile'][x + y]])
+            for y in range(24):
+                # meto en un array todos mis datos
+                x_muestras.append([datosProcesados['Glucose'][x + y],
+                                   datosProcesados['Accel'][x + y],
+                                   datosProcesados['Fast_insulin'][x + y],
+                                   datosProcesados['Slow_insulin'][x + y],
+                                   datosProcesados['Fast_insulin_process'][x + y],
+                                   datosProcesados['Slow_insulin_process'][x + y],
+                                   datosProcesados['Fast_insulin_process_exp'][x + y],
+                                   datosProcesados['Slow_insulin_process_exp'][x + y],
+                                   datosProcesados['Delta_calories'][x + y],
+                                   datosProcesados['Calories_exp'][x + y],
+                                   datosProcesados['Fast_insulin_lispro'][x + y],
+                                   datosProcesados['Slow_insulin_regular'][x + y],
+                                   datosProcesados['Fast_insulin_profile'][x + y],
+                                   datosProcesados['Slow_insulin_profile'][x + y]])
 
-                x_glucose.append(x_muestras)
-                y_glucose.append(datosProcesados['Glucose'][x + 24 + posicion_glucosa])
+            x_glucose.append(x_muestras)
+            y_glucose.append(datosProcesados['Glucose'][x + 24 + posicion_glucosa])
 
     x = np.array(x_glucose)
     print('Tamaño de x: ', x.shape)
@@ -152,174 +335,38 @@ def bloque_matriz(path_full_dataset_processed, pacientes, posicion_glucosa):
     y = np.array(y_glucose)
     print('Tamaño de y: ', y.shape)
 
-    return x, y
+    xTrain, xVal, xTest, yTrain, yVal, yTest = separar_train_val_test(x, y, paciente)
+    xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_dividir_datos(xTrain, xVal, xTest)
+
+    #Save dimensions in a file
+    dimension_x_y_list.append(['total_patient', xTrain.shape, xVal.shape, xTest.shape, yTrain.shape, yVal.shape, yTest.shape, x.shape, y.shape])
+    try_1_list.append(['try_1', xTrain_DeltaInsulin.shape, xVal_DeltaInsulin.shape, xTest_DeltaInsulin.shape, '-', '-', '-', '-', '-'])
+    try_2_list.append(['try_2', xTrain_Insulin.shape, xVal_Insulin.shape, xTest_Insulin.shape, '', '', '', '', ''])
+    try_3_list.append(['try_3', xTrain_Insulin_lispro.shape, xVal_Insulin_lispro.shape,xTest_Insulin_lispro.shape, '', '', '', '', ''])
+    try_4_list.append(['try_4', xTrain_Insulin_comidasDeltas.shape,xVal_Insulin_comidasDeltas.shape, xTest_Insulin_comidasDeltas.shape, '', '', '', '', ''])
+    try_5_list.append(['try_5', xTrain_Insulin_comidasExp.shape,xVal_Insulin_comidasExp.shape,xTest_Insulin_comidasExp.shape, '', '', '', '', ''])
+    try_6_list.append(['try_6', xTrain_Insulin_comidasExp_lispro.shape, xVal_Insulin_comidasExp_lispro.shape, xTest_Insulin_comidasExp_lispro.shape, '', '', '', '', ''])
+    try_7_list.append(['try_7', xTrain_Insulin_comidasExp_profiles.shape, xVal_Insulin_comidasExp_profiles.shape, xTest_Insulin_comidasExp_profiles.shape, '', '', '', '', ''])
+    df = pd.DataFrame(dimension_x_y_list, columns=['', 'xTrain', 'xVal', 'xTest', 'yTrain', 'yVal', 'yTest', 'x', 'y'])
+    df.loc[1] = try_1_list[0]
+    df.loc[2] = try_2_list[0]
+    df.loc[3] = try_3_list[0]
+    df.loc[4] = try_4_list[0]
+    df.loc[5] = try_5_list[0]
+    df.loc[6] = try_6_list[0]
+    df.loc[7] = try_7_list[0]
+    print(df)
+    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
+    df.to_csv(path, index=False)
 
 
-
-def separar_x_y(x ,y):
-    """
-    :param x:
-    :param y:
-    :return:
-
-    Separamos en test y train
-    Dividimos los datos en test, entrenamiento y validación para entrenar, validar y testear el modelo.
-
-    *   Datos de entrenamiento: se utilizan para entrenar el modelo. El modelo aprenderá de estos datos.
-    *   Datos de validación: se utilizan para proporcionar una evaluación imparcial del modelo de datos mientras se ajustan los hiperparámetros del modelo.
-    *   Datos de test: conjunto de datos utilizados para proporcionar una evaluación imparcial del modelo final.
-    """
-
-    # print(x.shape)   #(2738, 24, 14)
-    # print(y.shape)   #(2738,)
-
-    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0)
-    print (xTrain.shape)    # (2190, 24, 14)  [[[7.40000000e+00 4.21584213e+01 0.00000000e+00 ... 0.00000000e+00   5.76909235e-02 2.60332989e+00]
-    print (xTest.shape)     # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
-    print(yTrain.shape)    # (2190,)            [ 3.7 11.5  4.6 ...  7.2  4.6  4.6]
-    print(yTest.shape)      # (548,)    [ 6.3  6.9  8.   4.3  ... 6.3 22.2  2.5 13.5   5.5 16.3]
-
-    xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size = 0.25, random_state = 0)
-    print(xTrain.shape)  # (1642, 24, 14)
-    print(xVal.shape)  # (548, 24, 14)
-    print (yVal.shape)  # (548,)
-
-    return xTrain, xVal, xTest, yTrain, yVal, yTest
-    # (4688, 24, 14)
-    # (1172, 24, 14)
-    # (4688,)
-    # (1172,)
-    # (3516, 24, 14)
-    # (1172, 24, 14)
-    # (1172,)
-
-
-def divideDatos(xDiv):
-    xDiv_glucose = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 1))  # change dimensions
-    xDiv_Accel = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1))
-    xDiv_DeltaInsulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_lispro_regular = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_exp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 3).reshape((xDiv.shape[0], xDiv.shape[1], 3))
-    xDiv_Insulin_comidasDeltas = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasDeltas_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape((xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp_lispro = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
-    xDiv_Insulin_comidasExp_profiles = np.zeros(xDiv.shape[0] * xDiv.shape[1] * 4).reshape(
-        (xDiv.shape[0], xDiv.shape[1], 4))
-
-    for x in range(xDiv.shape[0]):
-        for y in range(xDiv.shape[1]):
-            xDiv_glucose[x][y] = xDiv[x][y][0]
-
-            xDiv_Accel[x][y][0] = xDiv[x][y][0]
-            # xDiv_Accel[x][y][1] = xDiv[x][y][1]
-
-            xDiv_DeltaInsulin[x][y][0] = xDiv[x][y][0]  # exp 1
-            # xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][1]
-            xDiv_DeltaInsulin[x][y][1] = xDiv[x][y][2]
-            xDiv_DeltaInsulin[x][y][2] = xDiv[x][y][3]
-
-            xDiv_Insulin[x][y][0] = xDiv[x][y][0]  # exp 2
-            # xDiv_Insulin[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin[x][y][2] = xDiv[x][y][5]
-
-            xDiv_Insulin_lispro[x][y][0] = xDiv[x][y][0]  # michaelis y exponentials  exp 3
-            # xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_lispro[x][y][1] = xDiv[x][y][5]
-            xDiv_Insulin_lispro[x][y][2] = xDiv[x][y][10]
-
-            xDiv_Insulin_lispro_regular[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_lispro_regular[x][y][1] = xDiv[x][y][11]
-            xDiv_Insulin_lispro_regular[x][y][2] = xDiv[x][y][10]
-
-            xDiv_Insulin_profiles[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_profiles[x][y][2] = xDiv[x][y][13]
-
-            xDiv_Insulin_exp[x][y][0] = xDiv[x][y][0]  # NO sirve
-            # xDiv_Insulin_exp[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_exp[x][y][1] = xDiv[x][y][6]
-            xDiv_Insulin_exp[x][y][2] = xDiv[x][y][7]
-
-            xDiv_Insulin_comidasDeltas[x][y][0] = xDiv[x][y][0]  # exp 4
-            # xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasDeltas[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin_comidasDeltas[x][y][2] = xDiv[x][y][5]
-            xDiv_Insulin_comidasDeltas[x][y][3] = xDiv[x][y][8]  # all in 0
-
-            xDiv_Insulin_comidasDeltas_profiles[x][y][0] = xDiv[x][y][0]  # no sirve
-            # xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][2] = xDiv[x][y][13]
-            xDiv_Insulin_comidasDeltas_profiles[x][y][3] = xDiv[x][y][8]
-
-            xDiv_Insulin_comidasExp[x][y][0] = xDiv[x][y][0]  # exp 5
-            # xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp[x][y][1] = xDiv[x][y][4]
-            xDiv_Insulin_comidasExp[x][y][2] = xDiv[x][y][5]
-            xDiv_Insulin_comidasExp[x][y][3] = xDiv[x][y][9]
-
-            xDiv_Insulin_comidasExp_lispro[x][y][0] = xDiv[x][y][0]  # menten 6
-            # xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp_lispro[x][y][1] = xDiv[x][y][5]
-            xDiv_Insulin_comidasExp_lispro[x][y][2] = xDiv[x][y][10]
-            xDiv_Insulin_comidasExp_lispro[x][y][3] = xDiv[x][y][9]
-
-            xDiv_Insulin_comidasExp_profiles[x][y][0] = xDiv[x][y][0]  # experiment 7
-            # xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][1]
-            xDiv_Insulin_comidasExp_profiles[x][y][1] = xDiv[x][y][12]
-            xDiv_Insulin_comidasExp_profiles[x][y][2] = xDiv[x][y][13]
-            xDiv_Insulin_comidasExp_profiles[x][y][3] = xDiv[x][y][9]
-
-    return xDiv_glucose, xDiv_Accel, xDiv_DeltaInsulin, xDiv_Insulin, xDiv_Insulin_lispro, xDiv_Insulin_lispro_regular, xDiv_Insulin_profiles, xDiv_Insulin_exp, xDiv_Insulin_comidasDeltas, xDiv_Insulin_comidasDeltas_profiles, xDiv_Insulin_comidasExp, xDiv_Insulin_comidasExp_lispro, xDiv_Insulin_comidasExp_profiles
-
-def bloque_dividir_datos(xTrain, xVal, xTest):
-    xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles = divideDatos(
-        xTrain)
-    #print('xTrain_glucose tiene un tamaño: ', xTrain_glucose.shape)
-    #print('xTrain_Accel tiene un tamaño: ', xTrain_Accel.shape)
-    # print('xTrain_DeltaInsulin tiene un tamaño: ',xTrain_DeltaInsulin.shape)
-    # print('xTrain_Insulin tiene un tamaño: ',xTrain_Insulin.shape)
-    # xTrain_Insulin_lispro
-    # xTrain_Insulin_lispro_regular
-    # xTrain_Insulin_profiles
-    # print('xTrain_Insulin_exp tiene un tamaño: ',xTrain_Insulin_exp.shape)
-    # print('xTrain_Insulin_comidasDeltas tiene un tamaño: ',xTrain_Insulin_comidasDeltas.shape)
-    # xTrain_Insulin_comidasDeltas_profiles
-    # print('xTrain_Insulin_comidasExp tiene un tamaño: ',xTrain_Insulin_comidasExp.shape)
-    # xTrainv_Insulin_comidasExp_lispro
-    # xTrain_Insulin_comidasExp_profiles
-
-    xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles = divideDatos(
-        xVal)
-    # print('xVal_glucose tiene un tamaño: ',xVal_glucose.shape)
-    # print('xVal_Accel tiene un tamaño: ',xVal_Accel.shape)
-    # print('xVal_DeltaInsulin tiene un tamaño: ',xVal_DeltaInsulin.shape)
-    # print('xVal_Insulin tiene un tamaño: ',xVal_Insulin.shape)
-    # print('xVal_Insulin_exp tiene un tamaño: ',xVal_Insulin_exp.shape)
-    # print('xVal_Insulin_comidasDeltas tiene un tamaño: ',xVal_Insulin_comidasDeltas.shape)
-    # print('xVal_Insulin_comidasExp tiene un tamaño: ',xVal_Insulin_comidasExp.shape)
-
-    xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = divideDatos(
-        xTest)
-    # print('xTest_glucose tiene un tamaño: ',xTest_glucose.shape)
-    # print('xTest_Accel tiene un tamaño: ',xTest_Accel.shape)
-    # print('xTest_DeltaInsulin tiene un tamaño: ',xTest_DeltaInsulin.shape)
-    # print('xTest_Insulin tiene un tamaño: ',xTest_Insulin.shape)
-    # print('xTest_Insulin_exp tiene un tamaño: ',xTest_Insulin_exp.shape)
-    # print('xTest_Insulin_comidasDeltas tiene un tamaño: ',xTest_Insulin_comidasDeltas.shape)
-    # print('xTest_Insulin_comidasExp tiene un tamaño: ',xTest_Insulin_comidasExp.shape)
 
     return xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles
+
+
+
+
+
 
 
 def root_mean_squared_error(y_true, y_pred):
@@ -361,11 +408,17 @@ def cargaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, 
 
 def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
     print("-EXECUTION: BLOQUE EJECUCIÓN...")
+    #pacientes=[1, 2, 4, 6, 7, 8]
+    pacientes=[1]
+
     for paciente in pacientes:
         path_fichero_full_procesados = path_full_dataset_processed[paciente - 1]  # cambiar por path_gai_dataset_processed
         datosProcesados = pd.read_csv(path_fichero_full_procesados)
         print('paciente: ', paciente)
         #print('Tamaño del csv de datos procesados gai previo a comida: ', datosProcesados.shape)
+
+
+
 
         #execution_number = 10
         execution_list = []
@@ -378,18 +431,17 @@ def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_data
         scores_exp_6 = []
         scores_exp_7 = []
         listaScores = []
+        execution_number=2
+
+        xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados)
 
         for exe in range(execution_number):    #duda, execution antes de bloque matriz, separar x y y dividir datos o depues.
             print('EJECUCION: ', exe)
             execution_list.append("execution_" + str(exe+1) + "_case_" + str(cn) + "_patient_" + str(paciente))
 
-            x, y = bloque_matriz(path_full_dataset_processed, pacientes, posicion_glucosa)
-            xTrain, xVal, xTest, yTrain, yVal, yTest = separar_x_y(x, y)
-            xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_dividir_datos(xTrain, xVal, xTest)
-
             try_number=1
             #y_pred_exp_1, score_exp_1 = ejecutaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_DeltaInsulin, yTrain, xVal_DeltaInsulin, yVal, xTest_DeltaInsulin, yTest)
-            y_pred_exp_1, score_exp_1 = cargaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_DeltaInsulin, yTrain, xVal_DeltaInsulin, yVal, xTest_DeltaInsulin, yTest)
+            #y_pred_exp_1, score_exp_1 = cargaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_DeltaInsulin, yTrain, xVal_DeltaInsulin, yVal, xTest_DeltaInsulin, yTest)
             try_number=2
             # y_pred_exp_2, score_exp_2 = ejecutaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number, xTrain_Insulin, yTrain, xVal_Insulin, yVal, xTest_Insulin, yTest)
             try_number=3
@@ -403,7 +455,7 @@ def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_data
             try_number = 7
             # y_pred_exp_7, score_exp_7 = ejecutaModeloSinPrint(units, epochs, batch_size, adam_opt, path_models_saved, cn, , paciente, exe, try_number, xTrain_Insulin_comidasExp_profiles, yTrain, xVal_Insulin_comidasExp_profiles, yVal, xTest_Insulin_comidasExp_profiles, yTest)
 
-            #y_pred_exp_1, score_exp_1 = 1, 3
+            y_pred_exp_1, score_exp_1 = 1, 3
             y_pred_exp_2, score_exp_2 = 1, 4
             y_pred_exp_3, score_exp_3 = 1, 5
             y_pred_exp_4, score_exp_4 = 1, 6
