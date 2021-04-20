@@ -2,18 +2,18 @@ import pandas as pd
 import numpy as np
 
 from casos.matrices.matrices import bloque_matriz
-from casos.execution.models_tries import bloque_modelos_experimentos
+from casos.execution.models_tries import bloque_guardar_modelos_experimentos, bloque_cargar_modelos_experimentos
 
-def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
+def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
     print("-EXECUTION: BLOQUE EJECUCIÓN...")
     #pacientes=[1, 2, 4, 6, 7, 8]
-    #pacientes=[1]
-    # execution_number = 10
+    pacientes=[1]
+    execution_number = 1
 
     for paciente in pacientes:
         path_fichero_full_procesados = path_full_dataset_processed[paciente - 1]  # cambiar por path_gai_dataset_processed
         datosProcesados = pd.read_csv(path_fichero_full_procesados)
-        print('paciente: ', paciente)
+        print('PACIENTE: ', paciente)
         #print('Tamaño del csv de datos procesados gai previo a comida: ', datosProcesados.shape)
 
         execution_list = []
@@ -27,13 +27,50 @@ def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_data
         scores_exp_7 = []
 
         #bloque matriz antes o después de las ejecuciones independiente, depende entonces si se vuelven a dividir xtrain, xval y xtest en las ejecuciones.
-        xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(cn, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
+        yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
+
+        exe=0
+        bloque_guardar_modelos_experimentos(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente,
+                                                exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
+                                                xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
+                                                xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
+                                                xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
+                                                xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
+                                                xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
+                                                xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
+                                                xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles,
+                                                xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
+                                                xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
+                                                xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
+                                                xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
+                                                xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
+                                                xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas,
+                                                xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp,
+                                                xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
+
 
         for exe in range(execution_number):    #duda, execution antes de bloque matriz, separar x y y dividir datos o depues.
-            print('EJECUCION: ', exe)
+            print('\t EJECUCION: ', exe)
             execution_list.append("execution_" + str(exe+1) + "_case_" + str(cn) + "_patient_" + str(paciente))
 
-            listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7 = bloque_modelos_experimentos(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
+            listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(listaScores, units, epochs, batch_size, adam_opt, path_models_saved,
+                                                  cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
+                                                  xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
+                                                  xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
+                                                  xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
+                                                  xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
+                                                  xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
+                                                  xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
+                                                  xVal_Insulin_lispro, xVal_Insulin_lispro_regular,
+                                                  xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
+                                                  xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
+                                                  xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
+                                                  xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
+                                                  xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
+                                                  xTest_Insulin_profiles, xTest_Insulin_exp,
+                                                  xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles,
+                                                  xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro,
+                                                  xTest_Insulin_comidasExp_profiles)
 
 
         # print('scores_exp_1: ', np.mean(scores_exp_1))
@@ -71,8 +108,10 @@ def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_data
         execution_list.append('min_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
         execution_list.append('max_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
 
+        #print(listaScores)
+        #print(execution_list)
         df = pd.DataFrame(np.array(listaScores), columns=['score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4', 'score_exp_5', 'score_exp_6', 'score_exp_7'], index=execution_list)
-        print(df)
+        #print(df)
         path_scores = path_scores_dataset_processed[paciente - 1]
         df.to_csv(path_scores, index=True)
 

@@ -35,7 +35,7 @@ def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
     #print('Tamaño de xVal: ', xVal.shape) # (548, 24, 14)
     #print('Tamaño de yVal: ', yVal.shape)  # (548,)
 
-    print('Tamaño de x, xTrain, xVal y xTest: ', x.shape, xTrain.shape, xVal.shape, xTest.shape)   # patient 1 Caso 0 (665, 24, 14) (399, 24, 14) (133, 24, 14) (133, 24, 14)
+    #print('Tamaño de x, xTrain, xVal y xTest: ', x.shape, xTrain.shape, xVal.shape, xTest.shape)   # patient 1 Caso 0 (665, 24, 14) (399, 24, 14) (133, 24, 14) (133, 24, 14)
     #all patients Caso 1 (3516, 24, 14), (1172, 24, 14), (1172, 24, 14)
 
     dimension_x_y_list.append([x.shape, y.shape, xTrain.shape, yTrain.shape, xVal.shape, yVal.shape, xTest.shape, yTest.shape])
@@ -48,10 +48,9 @@ def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
 
 
 
-def divideDatos(xDiv):
+def divideDatos(xDiv, ac):
     print("----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS")
-    #ac = 1 or 0
-    ac=1
+    #ac = 1 #or 0 in case of no acceleration
     xDiv_glucose = np.zeros(xDiv.shape[0] * xDiv.shape[1]).reshape((xDiv.shape[0], xDiv.shape[1], 1))  # change dimensions
     xDiv_Accel = np.zeros(xDiv.shape[0] * xDiv.shape[1]*(ac+1)).reshape((xDiv.shape[0], xDiv.shape[1], 1+ac))
     xDiv_DeltaInsulin = np.zeros(xDiv.shape[0] * xDiv.shape[1] * (ac+3)).reshape((xDiv.shape[0], xDiv.shape[1], 3+ac))
@@ -161,10 +160,10 @@ def divideDatos(xDiv):
 
     return xDiv_glucose, xDiv_Accel, xDiv_DeltaInsulin, xDiv_Insulin, xDiv_Insulin_lispro, xDiv_Insulin_lispro_regular, xDiv_Insulin_profiles, xDiv_Insulin_exp, xDiv_Insulin_comidasDeltas, xDiv_Insulin_comidasDeltas_profiles, xDiv_Insulin_comidasExp, xDiv_Insulin_comidasExp_lispro, xDiv_Insulin_comidasExp_profiles
 
-def bloque_dividir_datos(xTrain, xVal, xTest):
+def bloque_dividir_datos(xTrain, xVal, xTest, ac):
     print("---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST")
 
-    xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles = divideDatos(xTrain)
+    xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles = divideDatos(xTrain, ac)
 
     # print('xTrain_try_1 tiene un tamaño: ',xTrain_DeltaInsulin.shape)
     # print('xTrain_try_2 tiene un tamaño: ',xTrain_Insulin.shape)
@@ -174,7 +173,7 @@ def bloque_dividir_datos(xTrain, xVal, xTest):
     # print('xTrain_try_6 tiene un tamaño: ',xTrain_Insulin_comidasExp_lispro.shape)
     # print('xTrain_try_7 tiene un tamaño: ',xTrain_Insulin_comidasExp_profiles.shape)
 
-    xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles = divideDatos(xVal)
+    xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles = divideDatos(xVal, ac)
 
     # print('xVal_try_1 tiene un tamaño: ',xVal_DeltaInsulin.shape)
     # print('xVal_try_2 tiene un tamaño: ',xVal_Insulin.shape)
@@ -184,7 +183,7 @@ def bloque_dividir_datos(xTrain, xVal, xTest):
     # print('xVal_try_6 tiene un tamaño: ',xVal_Insulin_comidasExp_lispro.shape)
     # print('xVal_try_7 tiene un tamaño: ',xVal_Insulin_comidasExp_profiles.shape)
 
-    xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = divideDatos(xTest)
+    xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = divideDatos(xTest, ac)
 
     # print('xTest_try_1 tiene un tamaño: ',xTest_DeltaInsulin.shape)
     # print('xTest_try_2 tiene un tamaño: ',xTest_Insulin.shape)

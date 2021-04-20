@@ -49,7 +49,7 @@ def guardar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, p
     """if caso 1, si no pacientes cambia"""
     path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_trynumber_' + str(try_number) + '_execution_' + str(exe) + '_model'
     model.save(path, save_format='tf')
-    return y_pred, score
+    #return y_pred, score
 
 def cargar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number,  xTrain, yTrain, xVal, yVal, xTest, yTest):
     print("-MODEL: LOAD MODEL OF A TRY AND PATIENT")
