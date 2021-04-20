@@ -40,6 +40,7 @@ def definir_configuracion():
   execution_number = en    #1 or 10
   #execution_number = 1
 
+  cargar = 0               #0 first to save the mode 1 time, 1 then load the model 'en' times.
   posicion_glucosa = ph  #12 or 6
   #posicion_glucosa = 6
   #posicion_glucosa = 12
@@ -76,12 +77,12 @@ def definir_configuracion():
 
 
 
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 
 
 
 def bloque_parametros():
   print("-CONFIG: DEFINIR PARÁMETROS DE CONFIGURACION")
-  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = definir_configuracion()
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
+  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = definir_configuracion()
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 
