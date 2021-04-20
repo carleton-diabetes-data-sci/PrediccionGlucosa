@@ -54,6 +54,7 @@ def guardar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, p
 def cargar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number,  xTrain, yTrain, xVal, yVal, xTest, yTest):
     print("-MODEL: LOAD MODEL OF A TRY AND PATIENT")
     # Recrea exactamente el mismo modelo solo desde el archivo
+    exe=0  #use the first created model instead of a new one each execution
     path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_trynumber_' + str(try_number) + '_execution_' + str(exe) + '_model'
     new_model = keras.models.load_model(path, custom_objects={'root_mean_squared_error': root_mean_squared_error})
     history = new_model.fit(xTrain, yTrain, epochs=epochs, batch_size=batch_size, validation_data=(xVal, yVal), verbose=0, shuffle=False)
