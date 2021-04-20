@@ -46,4 +46,6 @@ bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, pi, path_full_dataset_
 print("MAIN: MEDIA DE RESULTADOS DE VARIOS PACIENTES...")
 media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
 
-#falta arreglar aceleracion, ventanas caso 1 sobra un bucle de paciente, cargar modelos, procesar datos de pacientes.
+
+
+# cargar modelos, procesar datos de pacientes.
