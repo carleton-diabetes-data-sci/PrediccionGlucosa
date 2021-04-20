@@ -52,8 +52,9 @@ def bloque_ejecucion(units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_
         for exe in range(execution_number):    #duda, execution antes de bloque matriz, separar x y y dividir datos o depues.
             print('\t EJECUCION: ', exe)
             execution_list.append("execution_" + str(exe+1) + "_case_" + str(cn) + "_patient_" + str(paciente))
-
-            listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(listaScores, units, epochs, batch_size, adam_opt, path_models_saved,
+            cargar=1
+            listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(
+                                                  cargar, listaScores, units, epochs, batch_size, adam_opt, path_models_saved,
                                                   cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
                                                   xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
                                                   xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
