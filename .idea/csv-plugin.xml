@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\casos\glucose_acceleration\glucose_acceleration.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\casos\main.py">
           <value>
             <Attribute>

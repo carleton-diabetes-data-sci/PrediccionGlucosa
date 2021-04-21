@@ -52,66 +52,66 @@ def define_paths():
                                 path_dataset + r'\009\food.csv']            #PATH
 
     path_dataset_processed = path_project + r'\D1NAMO\processed_subset'  # PATH
-    path_acceleration_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datosprocesadosAccel.csv']  # PATH
+    path_acceleration_dataset_processed = [                                                                                                         #se puede poner como datos sin procesar
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_datosprocesadosAccel.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_datosprocesadosAccel.csv']  # PATH
     path_insulin_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_insulina_procesada.csv']  # PATH
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_insulina_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_insulina_procesada.csv']  # PATH
     path_gai_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesados.csv',   #cambiar por path_gai_dataset_processed
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_gai_procesada.csv']  # PATH
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_gai_procesados.csv',   #cambiar por path_gai_dataset_processed
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_gai_procesada.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_gai_procesada.csv']  # PATH
     path_food_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_comidas_procesadas.csv']  # PATH
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_comidas_procesadas.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_comidas_procesadas.csv']  # PATH
     path_full_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',  #_ or not
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_datos_procesados.csv']  # PATH
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_datos_procesados.csv',  #_ or not
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_datos_procesados.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_datos_procesados.csv']  # PATH
     path_scores_dataset_processed = [
-                                path_dataset_processed + r'\001\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\002\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\003\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\004\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\005\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\006\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\007\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\008\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
-                                path_dataset_processed + r'\009\Caso_'+ str(cn) + '\Caso_'+ str(cn) + '_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\003\Caso_'+ str(cn) + '_paciente_003_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\004\Caso_'+ str(cn) + '_paciente_004_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\005\Caso_'+ str(cn) + '_paciente_005_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\006\Caso_'+ str(cn) + '_paciente_006_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_scores.csv',
+                                path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_scores.csv',
                                 path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',  # PATH
                                 path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv', # PATH
                                 path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv']  # PATH

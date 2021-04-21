@@ -33,17 +33,13 @@ def procesaDatosInsulina(root, pacientes, posicion_glucosa):
 
         fechas = pd.unique(insulin["date"])
 
-        insulina_procesada_deltas = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape(
-            (len(fechas) * len(horas) * len(minutos), 2))
-        insulina_procesada = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape(
-            (len(fechas) * len(horas) * len(minutos), 2))
-        insulina_procesada_lispro_regular = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape(
-            (len(fechas) * len(horas) * len(minutos), 2))
-        insulina_procesada_exp = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape(
-            (len(fechas) * len(horas) * len(minutos), 2))
+        insulina_procesada_deltas = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape((len(fechas) * len(horas) * len(minutos), 2))
+        insulina_procesada = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape((len(fechas) * len(horas) * len(minutos), 2))
+        insulina_procesada_lispro_regular = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape((len(fechas) * len(horas) * len(minutos), 2))
+        insulina_procesada_exp = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape((len(fechas) * len(horas) * len(minutos), 2))
+
         print('Tamaño del csv de insulina_procesada: ', insulina_procesada.shape)
-        insulina_procesada_profiles = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape(
-            (len(fechas) * len(horas) * len(minutos), 2))
+        insulina_procesada_profiles = np.zeros(len(fechas) * len(horas) * len(minutos) * 2).reshape((len(fechas) * len(horas) * len(minutos), 2))
         # https://dtc.ucsf.edu/types-of-diabetes/type2/treatment-of-type-2-diabetes/medications-and-therapies/type-2-insulin-rx/types-of-insulin/
 
         posicion_insulina_procesada = 0

@@ -48,4 +48,4 @@ print("MAIN: MEDIA DE RESULTADOS DE VARIOS PACIENTES...")
 
 
 
-# cargar modelos, procesar datos de pacientes.
+#cargar modelos, procesar datos de pacientes.
