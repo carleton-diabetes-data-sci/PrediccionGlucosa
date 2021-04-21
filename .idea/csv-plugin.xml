@@ -17,6 +17,181 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\001\Caso_0_paciente_001_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\002\Caso_0_paciente_002_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_insulina_procesada.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_paciente_004_datos_procesados.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_paciente_004_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\006\Caso_0_paciente_006_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\007\Caso_0_paciente_007_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_max_scores_relevant_patients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_mean_scores_relevant_patients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_min_scores_relevant_patients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\004\004_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\004\case_0_patient_4_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\006\006_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\006\case_0_patient_6_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\007\007_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\007\case_0_patient_7_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\008\008_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\008\case_0_patient_8_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\Caso_0_max_scores_relevant_patients_bugtf.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\001\001_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\001\case_0_patient_1_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\002\002_Caso_0_scores.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\002\case_0_patient_2_matrices.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\Caso_0_max_scores_relevant_patients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\Caso_0_min_scores_relevant_patients.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\D1NAMO\processed_subset\Caso_0_mean_scores_relevant_patientes.csv">
           <value>
             <Attribute>
