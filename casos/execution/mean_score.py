@@ -39,7 +39,7 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     max_scores_exp_6 = []
     max_scores_exp_7 = []
 
-    pacientes = [1, 2, 4, 6, 7, 8]         #Maybe put in configuration
+    #pacientes = [1, 2, 4, 6, 7, 8]         #Maybe put in configuration
 
     for paciente in pacientes:
         scores_exp_1 = []
@@ -107,9 +107,9 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     #print(df_min)
     #print(df_max)
 
-    path_mean_scores = path_scores_dataset_processed[9]  # the third last element of the array is the mean_scores of relevant patients in Case 0.
-    path_min_scores = path_scores_dataset_processed[10]  # the second last element of the array is the mean_scores of relevant patients in Case 0.
-    path_max_scores = path_scores_dataset_processed[11]  # the last element of the array is the mean_scores of relevant patients in Case 0.
+    path_mean_scores = path_scores_dataset_processed[9]  # the 9 element of the array is the mean_scores of relevant patients in Case 0.
+    path_min_scores = path_scores_dataset_processed[10]  # the 10 element of the array is the mean_scores of relevant patients in Case 0.
+    path_max_scores = path_scores_dataset_processed[11]  # the 11 of the array is the mean_scores of relevant patients in Case 0.
 
     df_mean.to_csv(path_mean_scores, index=False)
     df_min.to_csv(path_min_scores, index=False)

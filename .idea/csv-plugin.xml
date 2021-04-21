@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\D1NAMO\processed_subset\Caso_0_mean_scores_relevant_patientes.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\casos\README.md">
           <value>
             <Attribute>

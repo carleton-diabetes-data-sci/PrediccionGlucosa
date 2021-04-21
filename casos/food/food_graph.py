@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-def crear_grafica_comidasExp(cn, pi, patient_digit, path_food_graphs, path_food_dataset_processed, posicion_glucosa, pacientes):
+def crear_grafica_comidasExp(cn, pi, patient_digit, path_food_graphs, path_food_dataset_processed, posicion_glucosa, paciente):
     print("--FOOD_GRAPH_ CREAR GRÁFICA DE EXPONENCIALES DE COMIDA PARA 1 PACIENTE")
 
     print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")

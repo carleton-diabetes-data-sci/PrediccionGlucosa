@@ -3,8 +3,7 @@ import numpy as np
 
 
 
-def procesaDatosAccel(cn, pi, path_acceleration_dataset, path_acceleration_dataset_processed, pacientes):
-    for paciente in pacientes:
+def procesaDatosAccel(cn, pi, path_acceleration_dataset, path_acceleration_dataset_processed, paciente):
 
         sensor_data = []
 
