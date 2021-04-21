@@ -1,11 +1,11 @@
 import argparse
 
 def case_zero():
-    en=10
+    en=10  #10 or 1
     tn=7
     ph=12
     pn=1
-    pi=1
+    pi=-1        #1 or -1    #1, 2, 4, 6, 7, 8 separado
     st=0
     a=1
     fw=1
@@ -92,6 +92,8 @@ def parser_variables():
     #print("cn is ", cn)
     cn, en, tn, ph, pn, pi, st, a, fw = switch_cases(cn)
     #print("cn:", cn, "en:", en, "tn:", tn, "ph:", ph, "pn:", pn, "pi:", pi, "st:", st, "a:", a, "fw:", fw)
+
+
     return cn, en, tn, ph, pn, pi, st, a, fw
 
 #parser_variables()

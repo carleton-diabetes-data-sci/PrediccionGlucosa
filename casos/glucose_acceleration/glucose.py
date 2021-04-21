@@ -8,21 +8,22 @@ def crear_grafica_glucosa(cn, pi, path_glucose_acceleration_graphs,  path_glucos
     print("--GLUCOSE: CREAR GRÁFICA DE GLUCOSA PARA 1 PACIENTE")
 
     print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")
+
     if(pi==0):
-
-        print("--Definir el path para guardar la gráfica...")
-        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_001.png'
-
         print("--Definir el path para importar datos de glucosa...")
         print("El path del fichero inicial de glucosa del paciente 001 es: ", path_glucose_dataset[0])  #r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv'
-        path_fichero_glucosa = path_glucose_dataset[0]
+        path_fichero_glucosa = path_glucose_dataset[0]            #PATH
+
+        print("--Definir el path para guardar la gráfica...")
+        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_001.png'            #PATH
 
     else:
-        print("--Definir el path para guardar la gráfica...")
-        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_00' + pi + '.png'
-
         print("--Definir el path para importar datos de glucosa...")
-        print("POR HACER")
+        path_fichero_glucosa = path_glucose_dataset[pi-1]
+        print(path_fichero_glucosa)
+
+        print("--Definir el path para guardar la gráfica...")
+        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_00' + pi + '.png'            #PATH
 
 
     print("--Importamos fichero...")

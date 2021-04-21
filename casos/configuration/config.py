@@ -1,3 +1,5 @@
+
+
 import pandas as pd
 import numpy as np
 import os
@@ -20,12 +22,16 @@ import seaborn as sns
 
 from casos.configuration.paths import define_paths
 from casos.configuration.variables import parser_variables
+from casos.configuration.model import define_model_hiperparameters
 
 
 def definir_configuracion():
   print("-Definir los path...")
-  path_project,  path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset = define_paths()
-  print("path_project: ", path_project,  "path_glucose_acceleration_graphs: ", path_glucose_acceleration_graphs, "path_insulin_graphs: ", path_insulin_graphs, "path_food_graphs: ", path_food_graphs, "path_dataset: ", path_dataset, "path_glucose_dataset: ", path_glucose_dataset, "path_acceleration_dataset: ", path_acceleration_dataset, "path_insulin_dataset: ", path_insulin_dataset, "path_food_dataset: ",  path_food_dataset)
+  path_project,  path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved = define_paths()
+  #print("path_project: ", path_project,  "path_glucose_acceleration_graphs: ", path_glucose_acceleration_graphs, "path_insulin_graphs: ", path_insulin_graphs, "path_food_graphs: ", path_food_graphs, "path_dataset: ", path_dataset, "path_glucose_dataset: ", path_glucose_dataset, "path_acceleration_dataset: ", path_acceleration_dataset, "path_insulin_dataset: ", path_insulin_dataset, "path_food_dataset: ",  path_food_dataset)
+
+  print("-Definir los hiperparámetros del modelo LSTM")
+  units, epochs, batch_size, adam_opt = define_model_hiperparameters()
 
   print("-Definir el caso de investigación con sus parámetros")
   cn, en, tn, ph, pn, pi, st, a, fw = parser_variables()
@@ -34,23 +40,33 @@ def definir_configuracion():
   execution_number = en    #1 or 10
   #execution_number = 1
 
+  cargar = 0               #0 first to save the mode 1 time, 1 then load the model 'en' times.
   posicion_glucosa = ph  #12 or 6
   #posicion_glucosa = 6
   #posicion_glucosa = 12
 
-  #patient_id = pi
-  patient_id = 1
   paciente_uno = ['001']
   pacientes_all = ['001', '002', '003', '004', '005', '006', '007', '008', '009']
-  if (patient_id==0):
-    print(patient_id)
+
+
+  if (pi==0):
+    patient_digit = 1
+    print(patient_digit)
     pacientes_relevantes = ['001', '002', '004', '006', '007', '008']    #El 5 no tiene horas de las comidas. El 3 y 9 tienen muy pocos datos de aceleración
-    pacientes = pacientes_relevantes
+    pacientes_id= pacientes_relevantes
+    pacientes  = [1, 2, 4, 6, 7, 8]               #así en food_add
+
+  if (pi==-1):
+    patient_digit = 1
+    pacientes = [1, 2, 4, 6, 7, 8]
 
   else:
-    patientid = "['00" + str(patient_id) + "']"
-    print(patientid)
-    pacientes = patientid
+    patient_digit = pi
+    pacientes_id = "['00" + str(patient_digit) + "']"          #pacientes_id es ['00x']
+    pacientes = [patient_digit]                #así en food_add
+    print(pacientes)
+
+  ac = a   #ac is 1 if there is acceleration and 0 if not.
 
   # El primer valor es la edad, el segundo el género, el tercero la altura y el último el peso
   caracteristica_pacientes = {'001': ['NA', 'Man', '180–189', '80–89'], '002': ['20–29', 'Man', '170–179', '60–69'],
@@ -61,14 +77,12 @@ def definir_configuracion():
 
 
 
-
-
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, pacientes
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 
 
 
 def bloque_parametros():
   print("-CONFIG: DEFINIR PARÁMETROS DE CONFIGURACION")
-  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, pacientes = definir_configuracion()
-  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, cn, en, tn, ph, pn, pi, st, a, fw, execution_number, posicion_glucosa, paciente_uno, pacientes_all, pacientes
+  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes = definir_configuracion()
+  return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, units, epochs, batch_size, adam_opt, cn, ac, en, tn, ph, pn, pi, st, a, fw, execution_number, cargar, posicion_glucosa, paciente_uno, pacientes_all, patient_digit, pacientes
 

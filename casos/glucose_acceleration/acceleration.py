@@ -1,9 +1,35 @@
-def procesaDatosAccel(root, pacientes):
-    for paciente in pacientes:
+import pandas as pd
+import numpy as np
+
+
+
+def procesaDatosAccel(cn, pi, path_acceleration_dataset, path_acceleration_dataset_processed, paciente):
 
         sensor_data = []
 
         glucose = pd.read_csv(root + paciente + '/glucose.csv')
+
+        print("--ACCELERATION: PROCESAR DATOS ACCELERACION PARA 1 PACIENTE")
+
+        print("El ID de paciente tiene el valor: ", pi, ". Si es 0 se hallan las gráficas para el paciente 001. Si no, para el paciente correspondiente.")
+
+        if (pi == 0):
+            print("--Definir el path para importar datos de glucosa...")
+            print("El path del fichero inicial de glucosa del paciente 001 es: ", path_glucose_dataset[
+                0])  # r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv'
+            path_fichero_glucosa = path_glucose_dataset[0]  # PATH
+
+            print("--Definir el path para guardar la gráfica...")
+            path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_001.png'  # PATH
+
+        else:
+            print("--Definir el path para importar datos de glucosa...")
+            path_fichero_glucosa = path_glucose_dataset[pi - 1]
+            print(path_fichero_glucosa)
+
+            print("--Definir el path para guardar la gráfica...")
+            path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(
+                cn) + '_glucosa_paciente_00' + pi + '.png'  # PATH
 
         print('paciente: ', paciente)
         print('Tamaño del csv de glucosa: ', glucose.shape)
@@ -97,7 +123,9 @@ def procesaDatosAccel(root, pacientes):
         df.to_csv(root + paciente + '/datos_procesadosAccel.csv', index=False)
 
 
-def crear_grafica_aceleracion(root, path_grafica):
+
+
+def crear_grafica_aceleracion_procesada(root, path_grafica):
     ficherosAceleracion = os.listdir(root + '001' + '/sensor_data/Accel')
 
     aceleracionV = []
@@ -125,7 +153,7 @@ def crear_grafica_aceleracion(root, path_grafica):
     # Creates two subplots and unpacks the output array immediately
     f, (ax1, ax2, ax3) = plt.subplots(1, 3, sharey=True, figsize=(18, 4))
 
-    ax1.set_title('Patient 1 non processed glucose_acceleration')
+    ax1.set_title('Patient 1 non processed_subset glucose_acceleration')
     ax1.set(xlabel='Time instant (sample)', ylabel='Acceleration (gal)')
     ax1.margins(0.05)  # Default margin is 0.05, value 0 means fit
     ax1.plot(eje_x, aceleracionV, color='red', label='Vertical accel')

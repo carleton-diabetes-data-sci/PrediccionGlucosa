@@ -64,7 +64,7 @@ Iin regular30(t)
 """
 
 
-def generaSignalInsulinaLinspro(unidades):
+def generaSignalInsulinaLispro(unidades):
     t = range(0, 241)
     I_in = np.zeros(len(t))
 
@@ -79,7 +79,7 @@ def generaSignalInsulinaLinspro(unidades):
     return I_in
 
 
-def crear_grafica_SignalInsulinaLinspro(ejemploInsulinaLispro, path):
+def crear_grafica_SignalInsulinaLispro(ejemploInsulinaLispro, path):
     plt.figure()
     plt.plot(ejemploInsulinaLispro)
     plt.title("Linspro Insulin 30 min peak")
