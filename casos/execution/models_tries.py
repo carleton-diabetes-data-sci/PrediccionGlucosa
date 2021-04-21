@@ -68,8 +68,7 @@ def bloque_cargar_modelos_experimentos(cargar, listaScores, units, epochs, batch
         t.append([time.time() - start_time])
         df = pd.DataFrame(t, columns=['load_model_time (s)'])
         # print(df)
-        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(
-            paciente) + '_execution_' + str(exe) + '_load_time.csv'
+        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_load_time.csv'
         df.to_csv(path, index=False)
         print("--- bloque_cargar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
 

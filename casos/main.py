@@ -44,8 +44,8 @@ print("MAIN: BLOQUE COMIDA...")
 print("MAIN: BLOQUE EJECUCIÓN...")
 bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa)
 print("MAIN: MEDIA DE RESULTADOS DE VARIOS PACIENTES...")
-media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
+#media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
 
 
 
-# cargar modelos, procesar datos de pacientes.
+#cargar modelos, procesar datos de pacientes.
