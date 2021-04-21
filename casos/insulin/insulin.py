@@ -1,6 +1,7 @@
-def bloque_insulina(cn, patient_digit, path_insulin_graphs, path_insulin_dataset):
+from casos.insulin.insulin_processing import procesaDatosInsulina
+from casos.insulin.insulin_add import anadeInsulinaProcesada
 
-
+def bloque_insulina(cn, patient_digit, path_insulin_graphs, path_insulin_dataset, paciente):
     print("PREPARAR DATOS DE INSULINA")
 
     print("-Se preparan los path de entrada (insulina)  y de salida (insulina procesada y graficas)...")
@@ -72,21 +73,21 @@ def bloque_insulina(cn, patient_digit, path_insulin_graphs, path_insulin_dataset
     return signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin
 
 
-def bloque_insulina_2(cn, pi, signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin):
+def bloque_insulina_2(cn, pi, signal_insulina_rapida, signal_insulina_lenta, ejemploInsulinaLispro, path_grafica_insulina_regular, lispro_insulin, regular_insulin, NPH_insulin, paciente):
 
     print("-Se genera la señal de asimilación de la insulina...")
     print("-Se procesa la insulina...")
-    procesaDatosInsulina(root, pacientes, posicion_glucosa)
+    procesaDatosInsulina(root, paciente, posicion_glucosa)
 
     print("--Se muestran las gráficas con exponencial, lineal decreciente y perfiles...")
     path_grafica_insulina_creciente_decreciente = root + 'graficas/insulina/exp_creciente_decreciente/paulainsulinaProcesadaExp.png'
-    # crear_grafica_insulina_procesada_cre_dec(root, path_grafica_insulina_creciente_decreciente)
+    #crear_grafica_insulina_procesada_cre_dec(root, path_grafica_insulina_creciente_decreciente)
 
     path_grafica_insulina_michaelis = root + 'graficas/insulina/lineal_decreciente/paulainsulinaProcesadamichaelis.png'
-    # crear_grafica_insulina_procesada_michaelis(root, path_grafica_insulina_michaelis)
+    #crear_grafica_insulina_procesada_michaelis(root, path_grafica_insulina_michaelis)
 
     path_grafica_insulina_procesada_perfiles = root + 'graficas/insulina/perfiles/paulainsulinaProcesadaPerfiles.png'
-    # crear_grafica_insulina_procesada_perfiles(root, path_grafica_insulina_procesada_perfiles)
+    #crear_grafica_insulina_procesada_perfiles(root, path_grafica_insulina_procesada_perfiles)
 
     print("-Se añade los datos de la insulina...")
-    # anadeInsulinaProcesada(root, pacientes, posicion_glucosa)
+    anadeInsulinaProcesada(root, paciente, posicion_glucosa)
