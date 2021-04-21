@@ -40,7 +40,7 @@ for paciente in pacientes:
     #print("MAIN: BLOQUE COMIDA...")
     #bloque_comida(cn, pi, patient_digit, path_food_graphs, path_food_dataset, path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, posicion_glucosa, paciente)
 print("MAIN: BLOQUE EJECUCIÓN...")
-bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa)   #maybe paciente instead to put inside the loop
+#bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa)   #maybe paciente instead to put inside the loop
 print("MAIN: MEDIA DE RESULTADOS DE VARIOS PACIENTES...")
 #media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
 #crear_grafica_media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes)
