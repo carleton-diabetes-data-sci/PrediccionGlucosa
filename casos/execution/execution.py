@@ -7,7 +7,7 @@ from casos.execution.models_tries import bloque_guardar_modelos_experimentos, bl
 def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
     print("-EXECUTION: BLOQUE EJECUCIÓN...")
     #pacientes=[1, 2, 4, 6, 7, 8]
-    pacientes=[1]
+    pacientes=[8]
     execution_number = 10
     cargar = 0
 
@@ -59,7 +59,7 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
                                                 xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
             cargar=1
             listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(
-                                                  cargar, listaScores, units, epochs, batch_size, adam_opt, path_models_saved,
+                                                  cargar, listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7, units, epochs, batch_size, adam_opt, path_models_saved,
                                                   cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
                                                   xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
                                                   xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
@@ -77,6 +77,7 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
                                                   xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles,
                                                   xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro,
                                                   xTest_Insulin_comidasExp_profiles)
+
 
 
         # print('scores_exp_1: ', np.mean(scores_exp_1))
@@ -106,6 +107,8 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
         # print('scores_exp_7: ', np.mean(scores_exp_7))
         # print(' -  Valor mínimo: ', np.amin(scores_exp_7))
         # print(' - Valor máximo: ', np.amax(scores_exp_7))
+
+
 
         listaScores.append([np.mean(scores_exp_1), np.mean(scores_exp_2), np.mean(scores_exp_3), np.mean(scores_exp_4), np.mean(scores_exp_5), np.mean(scores_exp_6), np.mean(scores_exp_7)])
         listaScores.append([np.amin(scores_exp_1), np.amin(scores_exp_2), np.amin(scores_exp_3), np.amin(scores_exp_4), np.amin(scores_exp_5), np.amin(scores_exp_6), np.amin(scores_exp_7)])

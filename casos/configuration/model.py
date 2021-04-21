@@ -5,7 +5,7 @@ def define_model_hiperparameters():
     #adam_opt=0.001
 
     units=56
-    epochs=1
+    epochs=150
     batch_size=16
     adam_opt=0.001
 
