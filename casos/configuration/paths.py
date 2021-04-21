@@ -41,15 +41,15 @@ def define_paths():
                                 path_dataset + r'\008\insulin.csv',
                                 path_dataset + r'\009\insulin.csv']            #PATH
     path_food_dataset = [
-                                path_dataset + r'\001\food.csv',
-                                path_dataset + r'\002\food.csv',
-                                path_dataset + r'\003\food.csv',
-                                path_dataset + r'\004\food.csv',
-                                path_dataset + r'\005\food.csv',
-                                path_dataset + r'\006\food.csv',
-                                path_dataset + r'\007\food.csv',
-                                path_dataset + r'\008\food.csv',
-                                path_dataset + r'\009\food.csv']            #PATH
+                                path_dataset + r'\001\food_dates_001.csv',
+                                path_dataset + r'\002\food_dates_002.csv',
+                                path_dataset + r'\003\food_dates_003.csv',
+                                path_dataset + r'\004\food_dates_004.csv',
+                                path_dataset + r'\005\food_dates_005.csv',
+                                path_dataset + r'\006\food_dates_006.csv',
+                                path_dataset + r'\007\food_dates_007.csv',
+                                path_dataset + r'\008\food_dates_008.csv',
+                                path_dataset + r'\009\food_dates_009.csv']            #PATH
 
     path_dataset_processed = path_project + r'\D1NAMO\processed_subset'  # PATH
     path_acceleration_dataset_processed = [                                                                                                         #se puede poner como datos sin procesar
@@ -112,9 +112,12 @@ def define_paths():
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_scores.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',  # PATH
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv', # PATH
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv']  # PATH
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients_graph.png'    ]  # PATH
 
 
     path_models_saved = path_project + r'\models'  # PATH
