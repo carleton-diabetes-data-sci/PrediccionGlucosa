@@ -112,12 +112,12 @@ def define_paths():
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_scores.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients_graph.png',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_min_scores_relevant_patients_graph.png',
-                                path_dataset_processed + r'\Caso_' + str(cn) + '_max_scores_relevant_patients_graph.png'    ]  # PATH
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_min_scores_relevant_patients_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_max_scores_relevant_patients_graph.png'    ]  # PATH
 
 
     path_models_saved = path_project + r'\models'  # PATH
