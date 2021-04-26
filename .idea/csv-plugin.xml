@@ -206,6 +206,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\casos\execution\execution.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\casos\execution\m.py">
           <value>
             <Attribute>
