@@ -7,9 +7,9 @@ from casos.execution.models_tries import bloque_guardar_modelos_experimentos, bl
 def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
     print("-EXECUTION: BLOQUE EJECUCIÓN...")
     #pacientes=[1, 2, 4, 6, 7, 8]
-    pacientes=[8]
-    execution_number = 10
-    cargar = 0
+    #pacientes=[8]
+    #execution_number = 10
+    #cargar = 0
 
     for paciente in pacientes:
         path_fichero_full_procesados = path_full_dataset_processed[paciente - 1]  # cambiar por path_gai_dataset_processed
@@ -38,7 +38,7 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
             yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(
                 cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
 
-            cargar=0
+            #cargar=0          #to save the model first
             bloque_guardar_modelos_experimentos(cargar, units, epochs, batch_size, adam_opt, path_models_saved, cn,
                                                 paciente,
                                                 exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
@@ -57,7 +57,7 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
                                                 xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas,
                                                 xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp,
                                                 xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
-            cargar=1
+            #cargar=1       #to load the model after
             listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(
                                                   cargar, listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7, units, epochs, batch_size, adam_opt, path_models_saved,
                                                   cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,

@@ -95,8 +95,8 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
         max_scores_exp_7.append(max_score_list[7])
 
     mean_scores_list.append(['mean_mean_case_' + str(cn) + '_relevant_patients', np.mean(mean_scores_exp_1), np.mean(mean_scores_exp_2),np.mean(mean_scores_exp_3), np.mean(mean_scores_exp_4), np.mean(mean_scores_exp_5), np.mean(mean_scores_exp_6), np.mean(mean_scores_exp_7)])
-    min_scores_list.append(['min_min_case' + str(cn) +'_relevant_patients', np.amin(min_scores_exp_1), np.amin(min_scores_exp_2),np.amin(min_scores_exp_3), np.amin(min_scores_exp_4), np.amin(min_scores_exp_5), np.amin(min_scores_exp_6), np.amin(min_scores_exp_7)])
-    max_scores_list.append(['max_max_case' + str(cn) +'_relevant_patients', np.amax(max_scores_exp_1), np.amax(max_scores_exp_2), np.amax(max_scores_exp_3), np.amax(max_scores_exp_4), np.amax(max_scores_exp_5), np.amax(max_scores_exp_6), np.amax(max_scores_exp_7)])
+    min_scores_list.append(['min_min_case_' + str(cn) +'_relevant_patients', np.amin(min_scores_exp_1), np.amin(min_scores_exp_2),np.amin(min_scores_exp_3), np.amin(min_scores_exp_4), np.amin(min_scores_exp_5), np.amin(min_scores_exp_6), np.amin(min_scores_exp_7)])
+    max_scores_list.append(['max_max_case_' + str(cn) +'_relevant_patients', np.amax(max_scores_exp_1), np.amax(max_scores_exp_2), np.amax(max_scores_exp_3), np.amax(max_scores_exp_4), np.amax(max_scores_exp_5), np.amax(max_scores_exp_6), np.amax(max_scores_exp_7)])
     # mean_scores_list = str(mean_scores_list)[1:-1]        #in case we need to delete [ ]
 
     df_mean = pd.DataFrame(np.array(mean_scores_list), columns=['GLOBAL_MEAN', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4','score_exp_5', 'score_exp_6', 'score_exp_7'])
