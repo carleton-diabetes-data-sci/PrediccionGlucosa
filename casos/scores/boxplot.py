@@ -30,6 +30,7 @@ def crear_boxplot_paciente(cn, en, path_boxplot, paciente, file_score):
     ax.set_title('70 scores of patient 00' + str(paciente) + ' by experiment number')
     ax.set_xlabel("Experiment number")
     ax.set_ylabel("Scores")
+    ax.set_ylim(0,2)
 
     plt.savefig(path)
     # show plot
@@ -63,6 +64,7 @@ def crear_boxplot_pacientes(cn, en, path_scores_dataset_processed, path_boxplot,
     ax.set_title("420 scores of relevant patients by experiment number")
     ax.set_xlabel("Experiment number")
     ax.set_ylabel("Scores")
+    ax.set_ylim(0,2)
 
     plt.savefig(path)
     # show plot
@@ -101,6 +103,7 @@ def crear_boxplot_experimento(cn, en, path_boxplot, try_number, exp_df):
     ax.set_title('60 scores of try number ' + str(try_number) + ' by patient number')
     ax.set_xlabel("Patient number")
     ax.set_ylabel("Scores")
+    ax.set_ylim(0,2)
 
     plt.savefig(path)
     # show plot

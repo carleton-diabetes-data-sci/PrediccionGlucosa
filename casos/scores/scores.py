@@ -10,8 +10,8 @@ from casos.scores.mean_score_graph import crear_grafica_media_resultados_pacient
 
 def bloque_scores(cn, en, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, pacientes):
     print("-BLOQUE SCORES: CREAR BOXPLOTS...")
-    #crear_boxplot_pacientes(cn, en, path_scores_dataset_processed, path_boxplot, pacientes)
-    crear_boxplot_experimentos(cn, en, path_scores_dataset_processed, path_boxplot, pacientes)
+    crear_boxplot_pacientes(cn, en, path_scores_dataset_processed, path_boxplot, pacientes)
+    #crear_boxplot_experimentos(cn, en, path_scores_dataset_processed, path_boxplot, pacientes)
 
 
     print("-BLOQUE SCORES: CREAR GRAFICAS CON SCORES...")
