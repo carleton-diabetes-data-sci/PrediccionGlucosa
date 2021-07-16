@@ -25,6 +25,11 @@ def crear_grafica_comidasExp(cn, pi, patient_digit, path_food_graphs, path_food_
     plt.title('Calorie absorption (Patient '+str(patient_digit)+')')
     plt.xlabel('Time instant (min)')
     plt.ylabel('Calories (cal)')
+
+    ax.set_xticks([1, 4, 5])
+    ax.set_xticklabels([1, 4, 5], fontsize=12)
+
+    
     leg = ax.legend()
 
     plt.savefig(path_comidas_exp)
