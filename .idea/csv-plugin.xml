@@ -206,6 +206,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\casos\configuration\paths.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\casos\execution\execution.py">
           <value>
             <Attribute>
@@ -263,6 +270,13 @@
           </value>
         </entry>
         <entry key="\casos\main.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\casos\scores\boxplot.py">
           <value>
             <Attribute>
               <option name="separator" value="," />

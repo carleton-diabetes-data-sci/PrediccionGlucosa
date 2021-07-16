@@ -102,6 +102,18 @@ def define_paths():
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_datos_procesados.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_datos_procesados.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_datos_procesados.csv']  # PATH
+
+    path_scores_dataset_processed = [
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\001\Caso_' + str(cn) + '_paciente_001_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\002\Caso_' + str(cn) + '_paciente_002_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\003\Caso_' + str(cn) + '_paciente_003_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\004\Caso_' + str(cn) + '_paciente_004_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\005\Caso_' + str(cn) + '_paciente_005_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\006\Caso_' + str(cn) + '_paciente_006_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\007\Caso_' + str(cn) + '_paciente_007_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\008\Caso_' + str(cn) + '_paciente_008_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\009\Caso_' + str(cn) + '_paciente_009_scores.csv']
+
     path_scores_dataset_processed = [
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\001\Caso_'+ str(cn) + '_paciente_001_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\002\Caso_'+ str(cn) + '_paciente_002_scores.csv',
@@ -127,9 +139,46 @@ def define_paths():
                                 path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_007_boxplot.png',  #21
                                 path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_008_boxplot.png']  #22
 
+    path_dataset_scores = path_project + r'\D1NAMO\scores_subset'  # PATH
+
+    path_boxplot = [
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_scores.csv',        # 15->0. tables with patients together
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_boxplot.png',         # 16->1. boxplot
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_001_boxplot.png',  # 17->2
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_002_boxplot.png',  # 18->3
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_004_boxplot.png',  # 19->4
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_006_boxplot.png',  # 20->5
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_007_boxplot.png',  # 21->6
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_008_boxplot.png',  # 22->7
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimentos_scores.csv',  # 8
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_1_scores.csv',  # 9
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_2_scores.csv',  # 10
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_3_scores.csv',  # 11
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_4_scores.csv',  # 12
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_5_scores.csv',  # 13
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_6_scores.csv',  # 14
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_7_scores.csv',  # 15
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimentos_boxplot.png',  # 16
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_1_boxplot.png',  # 17
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_2_boxplot.png',  # 18
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_3_boxplot.png',  # 19
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_4_boxplot.png',  # 20
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_5_boxplot.png',  # 21
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_6_boxplot.png',  # 22
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_experimento_7_boxplot.png'  # 23
+    ]
+    path_processed_scores_dataset = [
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_mean_scores.csv', # 9-> 0  3 tables with results
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_min_scores.csv',  #1
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_max_scores.csv',  #2
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_mean_scores_graph.png', # 12-> 3.  3 plots with results
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_min_scores_graph.png',  # 4
+                                path_dataset_scores + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_max_scores_graph.png'  # 5
+    ]
+
     path_models_saved = path_project + r'\models'  # PATH
 
 
-    #print(path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed, path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved)
+    #print(path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed, path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, path_models_saved)
 
-    return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved
+    return path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, path_models_saved
