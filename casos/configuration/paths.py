@@ -112,13 +112,20 @@ def define_paths():
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\007\Caso_'+ str(cn) + '_paciente_007_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\008\Caso_'+ str(cn) + '_paciente_008_scores.csv',
                                 path_dataset_processed + r'\Caso_'+ str(cn) + r'\009\Caso_'+ str(cn) + '_paciente_009_scores.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_min_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_max_scores_relevant_patients.csv',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_mean_scores_relevant_patients_graph.png',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_min_scores_relevant_patients_graph.png',
-                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_max_scores_relevant_patients_graph.png'    ]  # PATH
-
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_mean_scores.csv',    #9. 3 tables with results
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_min_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_max_scores.csv',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_mean_scores_graph.png',  #12. 3 plots with results
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_min_scores_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_max_scores_graph.png',
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_scores.csv',     #15. tables with patients together
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_pacientes_relevantes_boxplot.png',      # 16. boxplot
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_001_boxplot.png',  #17
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_002_boxplot.png',  #18
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_004_boxplot.png',  #19
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_006_boxplot.png',  #20
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_007_boxplot.png',  #21
+                                path_dataset_processed + r'\Caso_' + str(cn) + r'\Caso_' + str(cn) + '_paciente_008_boxplot.png']  #22
 
     path_models_saved = path_project + r'\models'  # PATH
 

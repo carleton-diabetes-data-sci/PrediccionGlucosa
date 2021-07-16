@@ -227,6 +227,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\casos\execution\mean_score_graph.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\casos\execution\score.py">
           <value>
             <Attribute>

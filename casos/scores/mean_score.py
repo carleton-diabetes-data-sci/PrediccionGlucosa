@@ -5,13 +5,6 @@ import numpy as np
 
 def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     print("--MEAN_SCORE: LA MEDIA DE RESULTADOS DE DIFERENTES PACIENTES EN CASO 0")
-    #mean_index_list = ["mean_patient_1", "mean_patient_2", "mean_patient_4", "mean_patient_6", "mean_patient_7", "mean_patient_8"]
-    #min_index_list = ["min_patient_1", "mean_patient_2", "mean_patient_4", "mean_patient_6", "mean_patient_7", "mean_patient_8"]
-    #max_index_list = ["max_patient_1", "mean_patient_2", "mean_patient_4", "mean_patient_6", "mean_patient_7","mean_patient_8"]
-    #mean_index_list.append('mean_mean_relevant_patients_case_' + str(cn))
-    #min_index_list.append('min_min_relevant_patients_case_' + str(cn))
-    #max_index_list.append('max_max_relevant_patients_case_' + str(cn))
-
     mean_scores_list = []
     mean_scores_exp_1 = []
     mean_scores_exp_2 = []
@@ -42,22 +35,10 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     #pacientes = [1, 2, 4, 6, 7, 8]         #Maybe put in configuration
 
     for paciente in pacientes:
-        scores_exp_1 = []
-        scores_exp_2 = []
-        scores_exp_3 = []
-        scores_exp_4 = []
-        scores_exp_5 = []
-        scores_exp_6 = []
-        scores_exp_7 = []
-
-        mean_score_list = []
-        min_score_list = []
-        max_score_list = []
-
         path_scores = path_scores_dataset_processed[paciente - 1]
         file_score = pd.read_csv(path_scores)
-        print('paciente: ', paciente)
-        print('Tamaño del csv de con los resultados de un paciente (en el caso 0: ', file_score.shape)
+        #print('paciente: ', paciente)
+        #print('Tamaño del csv de con los resultados de un paciente (en el caso 0: ', file_score.shape)
 
         mean_score_list = file_score.iloc[-3].values.tolist()  # mean row of a patient
         min_score_list = file_score.iloc[-2].values.tolist()  # min row of a patient
@@ -65,6 +46,7 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
         # print(mean_score_list)
         # print(min_score_list)
         # print(max_score_list)
+
 
         mean_scores_list.append(mean_score_list)
         min_scores_list.append(min_score_list)
@@ -94,16 +76,24 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
         max_scores_exp_6.append(max_score_list[6])
         max_scores_exp_7.append(max_score_list[7])
 
+
     mean_scores_list.append(['mean_mean_case_' + str(cn) + '_relevant_patients', np.mean(mean_scores_exp_1), np.mean(mean_scores_exp_2),np.mean(mean_scores_exp_3), np.mean(mean_scores_exp_4), np.mean(mean_scores_exp_5), np.mean(mean_scores_exp_6), np.mean(mean_scores_exp_7)])
-    min_scores_list.append(['min_min_case_' + str(cn) +'_relevant_patients', np.amin(min_scores_exp_1), np.amin(min_scores_exp_2),np.amin(min_scores_exp_3), np.amin(min_scores_exp_4), np.amin(min_scores_exp_5), np.amin(min_scores_exp_6), np.amin(min_scores_exp_7)])
-    max_scores_list.append(['max_max_case_' + str(cn) +'_relevant_patients', np.amax(max_scores_exp_1), np.amax(max_scores_exp_2), np.amax(max_scores_exp_3), np.amax(max_scores_exp_4), np.amax(max_scores_exp_5), np.amax(max_scores_exp_6), np.amax(max_scores_exp_7)])
-    # mean_scores_list = str(mean_scores_list)[1:-1]        #in case we need to delete [ ]
+    min_scores_list.append(['min_min_case_' + str(cn) + '_relevant_patients',  np.amin(min_scores_exp_1), np.amin(min_scores_exp_2),np.amin(min_scores_exp_3), np.amin(min_scores_exp_4), np.amin(min_scores_exp_5), np.amin(min_scores_exp_6), np.amin(min_scores_exp_7)])
+    max_scores_list.append(['max_max_case_' + str(cn) + '_relevant_patients',  np.amax(max_scores_exp_1), np.amax(max_scores_exp_2), np.amax(max_scores_exp_3), np.amax(max_scores_exp_4), np.amax(max_scores_exp_5), np.amax(max_scores_exp_6), np.amax(max_scores_exp_7)])
+    min_scores_list.append(
+        ['mean_min_case_' + str(cn) + '_relevant_patients', np.mean(min_scores_exp_1), np.mean(min_scores_exp_2),
+         np.mean(min_scores_exp_3), np.mean(min_scores_exp_4), np.mean(min_scores_exp_5), np.mean(min_scores_exp_6),
+         np.mean(min_scores_exp_7)])
+    max_scores_list.append(
+        ['mean_max_case_' + str(cn) + '_relevant_patients', np.mean(max_scores_exp_1), np.mean(max_scores_exp_2),
+         np.mean(max_scores_exp_3), np.mean(max_scores_exp_4), np.mean(max_scores_exp_5), np.mean(max_scores_exp_6),
+         np.mean(max_scores_exp_7)])
 
-    df_mean = pd.DataFrame(np.array(mean_scores_list), columns=['GLOBAL_MEAN', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4','score_exp_5', 'score_exp_6', 'score_exp_7'])
-    df_min = pd.DataFrame(np.array(min_scores_list), columns=['GLOBAL_MIN', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4', 'score_exp_5', 'score_exp_6', 'score_exp_7'])
-    df_max = pd.DataFrame(np.array(max_scores_list), columns=['GLOBAL_MAX', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4','score_exp_5', 'score_exp_6', 'score_exp_7'])
+    df_mean = pd.DataFrame(np.array(mean_scores_list), columns=['MEAN(MEAN(10 executions))', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4','score_exp_5', 'score_exp_6', 'score_exp_7'])
+    df_min = pd.DataFrame(np.array(min_scores_list), columns=['MIN(MIN(10 executions)) AND MEAN(MIN(10))', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4', 'score_exp_5', 'score_exp_6', 'score_exp_7'])
+    df_max = pd.DataFrame(np.array(max_scores_list), columns=['MAX(MAX(10 executions)) AND MEAN(MAX(10))', 'score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4','score_exp_5', 'score_exp_6', 'score_exp_7'])
 
-    print(df_mean)
+    #print(df_mean)
     #print(df_min)
     #print(df_max)
 
@@ -114,3 +104,5 @@ def media_resultados_pacientes(cn, path_scores_dataset_processed, pacientes):
     df_mean.to_csv(path_mean_scores, index=False)
     df_min.to_csv(path_min_scores, index=False)
     df_max.to_csv(path_max_scores, index=False)
+
+
