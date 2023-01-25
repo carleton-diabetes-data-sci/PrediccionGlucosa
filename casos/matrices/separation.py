@@ -41,7 +41,7 @@ def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
     dimension_x_y_list.append([x.shape, y.shape, xTrain.shape, yTrain.shape, xVal.shape, yVal.shape, xTest.shape, yTest.shape])
     df = pd.DataFrame(np.array(dimension_x_y_list), columns=['x', 'y', 'xTrain', 'yTrain', 'xVal', 'yVal', 'xTest', 'yTest'])
 
-    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
+    path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente)  + '/case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
     df.to_csv(path, index=False)
 
     return xTrain, xVal, xTest, yTrain, yVal, yTest

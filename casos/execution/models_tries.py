@@ -1,5 +1,5 @@
 import time
-from casos.execution.model import guardar_modelo, cargar_modelo
+from execution.model import guardar_modelo, cargar_modelo
 import pandas as pd
 import numpy as np
 
@@ -29,7 +29,7 @@ def bloque_guardar_modelos_experimentos(cargar, units, epochs, batch_size, adam_
         t.append([time.time() - start_time])
         df = pd.DataFrame(t, columns=['train_model_time (s)'])
         #print(df)
-        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_save_time.csv'
+        path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente) + '/case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_save_time.csv'
         df.to_csv(path, index=False)
         print("--- bloque_guardar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
 
@@ -60,7 +60,7 @@ def bloque_cargar_modelos_experimentos(cargar, listaScores, scores_exp_1, scores
         t.append([time.time() - start_time])
         df = pd.DataFrame(t, columns=['load_model_time (s)'])
         # print(df)
-        path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente) + '\case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_load_time.csv'
+        path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente) + '/case_' + str(cn) + '_patient_' + str(paciente) + '_execution_' + str(exe) + '_load_time.csv'
         df.to_csv(path, index=False)
         print("--- bloque_cargar_modelos_experimentos takes %s seconds: ---" % (time.time() - start_time))
 

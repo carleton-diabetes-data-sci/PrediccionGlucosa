@@ -3,280 +3,280 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\Casos\configuration\paths.py">
+        <entry key="/Casos/configuration/paths.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\diabetes_subset\001\glucose.csv">
+        <entry key="/D1NAMO/diabetes_subset/001/glucose.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\001\Caso_0_paciente_001_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/001/Caso_0_paciente_001_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\002\Caso_0_paciente_002_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/002/Caso_0_paciente_002_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_insulina_procesada.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/004/Caso_0_insulina_procesada.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_paciente_004_datos_procesados.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/004/Caso_0_paciente_004_datos_procesados.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\004\Caso_0_paciente_004_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/004/Caso_0_paciente_004_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\006\Caso_0_paciente_006_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/006/Caso_0_paciente_006_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\007\Caso_0_paciente_007_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/007/Caso_0_paciente_007_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_max_scores_relevant_patients.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/Caso_0_max_scores_relevant_patients.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_mean_scores_relevant_patients.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/Caso_0_mean_scores_relevant_patients.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\Caso_0_min_scores_relevant_patients.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/Caso_0_min_scores_relevant_patients.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\004\004_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/004/004_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\004\case_0_patient_4_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/004/case_0_patient_4_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\006\006_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/006/006_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\006\case_0_patient_6_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/006/case_0_patient_6_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\007\007_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/007/007_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\007\case_0_patient_7_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/007/case_0_patient_7_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\008\008_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/008/008_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\008\case_0_patient_8_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/008/case_0_patient_8_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf\Caso_0_max_scores_relevant_patients_bugtf.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf/Caso_0_max_scores_relevant_patients_bugtf.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\001\001_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/001/001_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\001\case_0_patient_1_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/001/case_0_patient_1_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\002\002_Caso_0_scores.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/002/002_Caso_0_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\002\case_0_patient_2_matrices.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/002/case_0_patient_2_matrices.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\Caso_0_max_scores_relevant_patients.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/Caso_0_max_scores_relevant_patients.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0\bugtf_2\Caso_0_min_scores_relevant_patients.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0/bugtf_2/Caso_0_min_scores_relevant_patients.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\D1NAMO\processed_subset\Caso_0_mean_scores_relevant_patientes.csv">
+        <entry key="/D1NAMO/processed_subset/Caso_0_mean_scores_relevant_patientes.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\README.md">
+        <entry key="/casos/README.md">
           <value>
             <Attribute>
               <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\configuration\paths.py">
+        <entry key="/casos/configuration/paths.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\execution\execution.py">
+        <entry key="/casos/execution/execution.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\execution\m.py">
+        <entry key="/casos/execution/m.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\execution\mean_score.py">
+        <entry key="/casos/execution/mean_score.py">
           <value>
             <Attribute>
               <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\execution\mean_score_graph.py">
+        <entry key="/casos/execution/mean_score_graph.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\execution\score.py">
+        <entry key="/casos/execution/score.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\food\food_add.py">
+        <entry key="/casos/food/food_add.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\food\food_signal.py">
+        <entry key="/casos/food/food_signal.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\glucose_acceleration\glucose_acceleration.py">
+        <entry key="/casos/glucose_acceleration/glucose_acceleration.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\main.py">
+        <entry key="/casos/main.py">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\casos\scores\boxplot.py">
+        <entry key="/casos/scores/boxplot.py">
           <value>
             <Attribute>
               <option name="separator" value="," />

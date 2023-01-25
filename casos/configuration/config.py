@@ -4,11 +4,11 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-import keras as keras
-from keras.models import Sequential
-from keras.layers import Dense
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 from sklearn.model_selection import train_test_split
-from keras.layers import LSTM
+from tensorflow.keras.layers import LSTM
 import datetime as tm
 from matplotlib import pyplot
 import math
@@ -20,14 +20,14 @@ from tabulate import tabulate
 import seaborn as sns
 # %matplotlib inline
 
-from casos.configuration.paths import define_paths
-from casos.configuration.variables import parser_variables
-from casos.configuration.model import define_model_hiperparameters
+from configuration.paths import define_paths
+from configuration.variables import parser_variables
+from configuration.model import define_model_hiperparameters
 
 
 def definir_configuracion():
   print("-Definir los path...")
-  path_project,  path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, path_models_saved = define_paths()
+  path_project, path_glucose_acceleration_graphs, path_insulin_graphs, path_food_graphs, path_dataset, path_glucose_dataset, path_acceleration_dataset, path_insulin_dataset, path_food_dataset, path_dataset_processed, path_acceleration_dataset_processed, path_insulin_dataset_processed,  path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, path_models_saved = define_paths()
   #print("path_project: ", path_project,  "path_glucose_acceleration_graphs: ", path_glucose_acceleration_graphs, "path_insulin_graphs: ", path_insulin_graphs, "path_food_graphs: ", path_food_graphs, "path_dataset: ", path_dataset, "path_glucose_dataset: ", path_glucose_dataset, "path_acceleration_dataset: ", path_acceleration_dataset, "path_insulin_dataset: ", path_insulin_dataset, "path_food_dataset: ",  path_food_dataset)
 
   print("-Definir los hiperparámetros del modelo LSTM")

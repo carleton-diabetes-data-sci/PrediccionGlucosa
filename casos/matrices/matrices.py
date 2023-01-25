@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from casos.matrices.separation import separar_train_val_test, bloque_dividir_datos
+from matrices.separation import separar_train_val_test, bloque_dividir_datos
 
 
 def bloque_matriz(cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved):
@@ -85,7 +85,7 @@ def bloque_matriz(cn, ac, path_full_dataset_processed, paciente, posicion_glucos
     df.loc[6] = try_6_list[0]
     df.loc[7] = try_7_list[0]
     #print(df)
-    path = path_models_saved + '\Caso_' + str(cn) + '\\00' + str(paciente)  + '\case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
+    path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente)  + '/case_' + str(cn) + '_patient_' + str(paciente) + '_matrices.csv'
     df.to_csv(path, index=False)
     return yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles
 

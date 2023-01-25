@@ -2,11 +2,10 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-import keras as keras
-from keras.models import Sequential
-from keras.layers import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 from sklearn.model_selection import train_test_split
-from keras.layers import LSTM
+from tensorflow.keras.layers import LSTM
 import datetime as tm
 from matplotlib import pyplot
 import math
@@ -19,12 +18,12 @@ import seaborn as sns
 # %matplotlib inline
 
 
-from casos.configuration.config import bloque_parametros
-from casos.glucose_acceleration.glucose_acceleration import bloque_glucosa_aceleracion
-from casos.insulin.insulin import bloque_insulina, bloque_insulina_2
-from casos.food.food import bloque_comida
-from casos.execution.execution import bloque_ejecucion
-from casos.scores.scores import bloque_scores
+from configuration.config import bloque_parametros
+from glucose_acceleration.glucose_acceleration import bloque_glucosa_aceleracion
+from insulin.insulin import bloque_insulina, bloque_insulina_2
+from food.food import bloque_comida
+from execution.execution import bloque_ejecucion
+from scores.scores import bloque_scores
 
 
 print("MAIN: BLOQUE CONFIGURACIÓN...")

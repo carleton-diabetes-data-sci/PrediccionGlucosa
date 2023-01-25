@@ -11,7 +11,7 @@ def crear_grafica_comidasExp(cn, pi, patient_digit, path_food_graphs, path_food_
     print(path_fichero_comidas_procesadas)                                       #PATH
 
     print("--Definir el path para guardar la gráfica...")
-    path_comidas_exp = path_food_graphs + '\Caso_' + str(cn) + '_comidasExponential_paciente_00' + str(patient_digit) + '.png'            #PATH
+    path_comidas_exp = path_food_graphs + '/Caso_' + str(cn) + '_comidasExponential_paciente_00' + str(patient_digit) + '.png'            #PATH
 
     print("--Importamos fichero...")
     comidas_procesadas = pd.read_csv(path_fichero_comidas_procesadas)

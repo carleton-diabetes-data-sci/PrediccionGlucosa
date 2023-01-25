@@ -11,11 +11,11 @@ def crear_grafica_glucosa(cn, pi, path_glucose_acceleration_graphs,  path_glucos
 
     if(pi==0):
         print("--Definir el path para importar datos de glucosa...")
-        print("El path del fichero inicial de glucosa del paciente 001 es: ", path_glucose_dataset[0])  #r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv'
+        print("El path del fichero inicial de glucosa del paciente 001 es: ", path_glucose_dataset[0])  #r'C:/Users/apula/PycharmProjects/PrediccionGlucosa/D1NAMO/diabetes_subset/001/glucose.csv'
         path_fichero_glucosa = path_glucose_dataset[0]            #PATH
 
         print("--Definir el path para guardar la gráfica...")
-        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_001.png'            #PATH
+        path_glucosa = path_glucose_acceleration_graphs + '/Caso_' + str(cn) + '_glucosa_paciente_001.png'            #PATH
 
     else:
         print("--Definir el path para importar datos de glucosa...")
@@ -23,11 +23,11 @@ def crear_grafica_glucosa(cn, pi, path_glucose_acceleration_graphs,  path_glucos
         print(path_fichero_glucosa)
 
         print("--Definir el path para guardar la gráfica...")
-        path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_00' + pi + '.png'            #PATH
+        path_glucosa = path_glucose_acceleration_graphs + '/Caso_' + str(cn) + '_glucosa_paciente_00' + pi + '.png'            #PATH
 
 
     print("--Importamos fichero...")
-    glucose = pd.read_csv(path_fichero_glucosa)        #r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv'
+    glucose = pd.read_csv(path_fichero_glucosa)        #r'C:/Users/apula/PycharmProjects/PrediccionGlucosa/D1NAMO/diabetes_subset/001/glucose.csv'
     # print(glucose.shape[0])
     eje_x = np.arange(glucose.shape[0])
     # print(eje_x.shape)

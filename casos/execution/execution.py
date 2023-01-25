@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-from casos.matrices.matrices import bloque_matriz
-from casos.execution.models_tries import bloque_guardar_modelos_experimentos, bloque_cargar_modelos_experimentos
+from matrices.matrices import bloque_matriz
+from execution.models_tries import bloque_guardar_modelos_experimentos, bloque_cargar_modelos_experimentos
 
 def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa):
     print("-EXECUTION: BLOQUE EJECUCIÓN...")

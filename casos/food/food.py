@@ -1,7 +1,7 @@
-from casos.food.food_signal import crear_grafica_comidas_Procesadas
-from casos.food.food_processing import procesaDatosComidas
-from casos.food.food_graph import crear_grafica_comidasExp
-from casos.food.food_add import anadeComidaProcesada
+from food.food_signal import crear_grafica_comidas_Procesadas
+from food.food_processing import procesaDatosComidas
+from food.food_graph import crear_grafica_comidasExp
+from food.food_add import anadeComidaProcesada
 
 def bloque_comida(cn, pi, patient_digit, path_food_graphs, path_food_dataset, path_gai_dataset_processed, path_food_dataset_processed, path_full_dataset_processed, posicion_glucosa, paciente):
     print("PREPARAR DATOS DE COMIDA")

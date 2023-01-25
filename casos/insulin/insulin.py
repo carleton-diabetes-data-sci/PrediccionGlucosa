@@ -1,5 +1,5 @@
-from casos.insulin.insulin_processing import procesaDatosInsulina
-from casos.insulin.insulin_add import anadeInsulinaProcesada
+from insulin.insulin_processing import procesaDatosInsulina
+from insulin.insulin_add import anadeInsulinaProcesada
 
 def bloque_insulina(cn, patient_digit, path_insulin_graphs, path_insulin_dataset, paciente):
     print("PREPARAR DATOS DE INSULINA")
@@ -9,30 +9,30 @@ def bloque_insulina(cn, patient_digit, path_insulin_graphs, path_insulin_dataset
     if (pi == 0):
         patient_digit == 1
         print("--Definir el path para importar datos de insulina...")
-        print("El path del fichero inicial de insulina del paciente 001 es: ", path_insuline_dataset[0])  # r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\insulin.csv'
+        print("El path del fichero inicial de insulina del paciente 001 es: ", path_insuline_dataset[0])  # r'C:/Users/apula/PycharmProjects/PrediccionGlucosa/D1NAMO/diabetes_subset/001/insulin.csv'
         path_fichero_insulina = path_insulin_dataset[0]               #PATH
 
     else:
         patient_digit ==pi
         print("--Definir el path para importar datos de insulina...")
-        print("El path del fichero inicial de insulina del paciente 001 es: ", path_insuline_dataset[pi-1])  # r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\insulin.csv'
+        print("El path del fichero inicial de insulina del paciente 001 es: ", path_insuline_dataset[pi-1])  # r'C:/Users/apula/PycharmProjects/PrediccionGlucosa/D1NAMO/diabetes_subset/001/insulin.csv'
         path_fichero_insulina = path_insulin_dataset[pi-1]             #PATH
 
 
     print("--Definir el path para guardar la gráfica de insulina rapida como exponencial...")
-    path_grafica_insulina_fast = path_insulin_graphs + '\exponentials\Caso_' + str(cn) + '_insulin_exponential_fastSignal' + str(duracion) + '_patient00' + str(patient_digit) + '.png'             #PATH
+    path_grafica_insulina_fast = path_insulin_graphs + '/exponentials/Caso_' + str(cn) + '_insulin_exponential_fastSignal' + str(duracion) + '_patient00' + str(patient_digit) + '.png'             #PATH
 
     print("--Definir el path para guardar la gráfica de insulina lenta como exponencial...")
-    path_grafica_insulina_slow = path_insulin_graphs + '\exponentials\Caso_' + str(cn) + '_insulin_exponential_slowSignal' + str(duracion) + '_patient00' + str(patient_digit) + '.png'            #PATH
+    path_grafica_insulina_slow = path_insulin_graphs + '/exponentials/Caso_' + str(cn) + '_insulin_exponential_slowSignal' + str(duracion) + '_patient00' + str(patient_digit) + '.png'            #PATH
 
     print("--Definir el path para guardar la gráfica de insulina rápida lispro con el modelo Michaelis Menten")
-    path_grafica_insulina_lispro = path_insulin_graphs + '\menten\Caso_' + str(cn) + '_insulin_menten_lisproSignal_patient00' + str(patient_digit) + '.png'            #PATH
+    path_grafica_insulina_lispro = path_insulin_graphs + '/menten/Caso_' + str(cn) + '_insulin_menten_lisproSignal_patient00' + str(patient_digit) + '.png'            #PATH
 
     print("--Definir el path para guardar la gráfica de insulina rápida regular con el modelo Michaelis Menten")
-    path_grafica_insulina_regular = path_insulin_graphs + '\menten\Caso_' + str(cn) + '_insulin_menten_regularSignal_patient00' + str(patient_digit) + '.png'            #PATH
+    path_grafica_insulina_regular = path_insulin_graphs + '/menten/Caso_' + str(cn) + '_insulin_menten_regularSignal_patient00' + str(patient_digit) + '.png'            #PATH
 
     print("--Definir el path para guardar la gráfica  insulina a partir de los perfiles de insulina Lispro, Regular y NPH")
-    path_perfiles_insulina = path_insulin_graphs + '\profiles\Caso_' + str(cn) + '_insulin_profiles_patient00' + str(patient_digit) + '.png'            #PATH
+    path_perfiles_insulina = path_insulin_graphs + '/profiles/Caso_' + str(cn) + '_insulin_profiles_patient00' + str(patient_digit) + '.png'            #PATH
 
 
     print("-Se procesa la insulina como una exponencial creciente y decreciente...")

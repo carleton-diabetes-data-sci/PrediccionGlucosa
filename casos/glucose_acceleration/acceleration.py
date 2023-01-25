@@ -16,11 +16,11 @@ def procesaDatosAccel(cn, pi, path_acceleration_dataset, path_acceleration_datas
         if (pi == 0):
             print("--Definir el path para importar datos de glucosa...")
             print("El path del fichero inicial de glucosa del paciente 001 es: ", path_glucose_dataset[
-                0])  # r'C:\Users\apula\PycharmProjects\PrediccionGlucosa\D1NAMO\diabetes_subset\001\glucose.csv'
+                0])  # r'C:/Users/apula/PycharmProjects/PrediccionGlucosa/D1NAMO/diabetes_subset/001/glucose.csv'
             path_fichero_glucosa = path_glucose_dataset[0]  # PATH
 
             print("--Definir el path para guardar la gráfica...")
-            path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(cn) + '_glucosa_paciente_001.png'  # PATH
+            path_glucosa = path_glucose_acceleration_graphs + '/Caso_' + str(cn) + '_glucosa_paciente_001.png'  # PATH
 
         else:
             print("--Definir el path para importar datos de glucosa...")
@@ -28,7 +28,7 @@ def procesaDatosAccel(cn, pi, path_acceleration_dataset, path_acceleration_datas
             print(path_fichero_glucosa)
 
             print("--Definir el path para guardar la gráfica...")
-            path_glucosa = path_glucose_acceleration_graphs + '\Caso_' + str(
+            path_glucosa = path_glucose_acceleration_graphs + '/Caso_' + str(
                 cn) + '_glucosa_paciente_00' + pi + '.png'  # PATH
 
         print('paciente: ', paciente)

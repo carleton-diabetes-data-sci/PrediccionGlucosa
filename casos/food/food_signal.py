@@ -27,7 +27,7 @@ def generaSignalComidas(inicio, calorias, duracion):
 
 
 def crear_grafica_comidas_Procesadas(cn, pi, patient_digit, path_food_graphs, posicion_glucosa, paciente):
-    path_comidas_procesadas = path_food_graphs + '\Caso_' + str(cn) + '_comidasProcesadas.png'
+    path_comidas_procesadas = path_food_graphs + '/Caso_' + str(cn) + '_comidasProcesadas.png'
 
     signal_comida_caloria = generaSignalComidas(0, 1000, 4*60)                     #inicio==0, calorias==1000, duración==4h
 
