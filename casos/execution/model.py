@@ -69,7 +69,7 @@ def guardar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, p
     # Guardar el Modelo
     """if caso 1, si no pacientes cambia"""
     path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente)  + '/case_' + str(cn) + '_patient_' + str(paciente) + '_trynumber_' + str(try_number) + '_execution_' + str(exe) + '_model'
-    model.save(path, save_format='tf')
+    model.save(path)
     #return y_pred, score
 
 def cargar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, paciente, exe, try_number,  xTrain, yTrain, xVal, yVal, xTest, yTest):
@@ -77,10 +77,11 @@ def cargar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, pa
     # Recrea exactamente el mismo modelo solo desde el archivo
     #exe=0  #use the first created model instead of a new one each execution
     path = path_models_saved + '/Caso_' + str(cn) + '//00' + str(paciente)  + '/case_' + str(cn) + '_patient_' + str(paciente) + '_trynumber_' + str(try_number) + '_execution_' + str(exe) + '_model'
-    new_model = tensorflow.models.load_model(path, custom_objects={'root_mean_squared_error': root_mean_squared_error})
+    new_model = tensorflow.keras.models.load_model(path, custom_objects={'root_mean_squared_error': root_mean_squared_error})
     history = new_model.fit(xTrain, yTrain, epochs=epochs, batch_size=batch_size, validation_data=(xVal, yVal), verbose=0, shuffle=False)
     y_pred = new_model.predict(xTest)
     score = new_model.evaluate(xTest, yTest)
+    print("RMSE:", score, "mmol/L\t", score * 18, "mg/dL (x18)")
     return y_pred, score
 
 
