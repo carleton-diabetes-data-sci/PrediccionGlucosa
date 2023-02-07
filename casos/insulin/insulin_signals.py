@@ -7,10 +7,10 @@ A. Defino la función que generará las señales de insulina rápida y lenta com
 def generaSignalInsulina(inicio, pico, duracion):
     signalInsulina = []
 
-    tau_decreciente = -((duracio n -pico ) -1) / np.log(0.01)
-    decreciente = signal.exponential((duracio n -pico), 0, tau_decreciente, False)
+    tau_decreciente = -((duracion -pico ) -1) / np.log(0.01)
+    decreciente = signal.exponential((duracion -pico), 0, tau_decreciente, False)
 
-    tau_creciente = -(pic o -1) / np.log(0.01)
+    tau_creciente = -(pico -1) / np.log(0.01)
     creciente = signal.exponential(pico ,pico, tau_creciente, False)
     signalInsulina.extend(creciente)
     signalInsulina.extend(decreciente)
