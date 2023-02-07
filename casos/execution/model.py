@@ -37,7 +37,7 @@ import pydot
 import pydotplus
 from pydotplus import graphviz
 # from tensorflow.keras.utils.vis_utils import pydot
-from tensorflow.keras.utils import plot_model
+# from tensorflow.keras.utils import plot_model
 
 
 
@@ -58,7 +58,7 @@ def guardar_modelo(units, epochs, batch_size, adam_opt, path_models_saved, cn, p
     model = Sequential()
     model.add(LSTM(units=units, input_shape=(xTrain.shape[1], xTrain.shape[2])))
     model.add(Dense(units=1))
-    plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=False)
+    # plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=False)
     model.compile(loss=root_mean_squared_error, optimizer=tensorflow.keras.optimizers.Adam(adam_opt))      #solo 1 vez
 
     history = model.fit(xTrain, yTrain, epochs=epochs, batch_size=batch_size, validation_data=(xVal, yVal), verbose=0, shuffle=False)         #de nuevo al importar el modelo de otro paciente
