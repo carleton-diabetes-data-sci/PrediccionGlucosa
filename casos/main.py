@@ -43,6 +43,6 @@ try:
     print("MAIN: BLOQUE EJECUCIÓN...")
     bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, path_full_dataset_processed, path_scores_dataset_processed, path_models_saved, execution_number, pacientes, posicion_glucosa)   #maybe paciente instead to put inside the loop
     print("MAIN: BLOQUE SCORES...")
-    #bloque_scores(cn, en, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, pacientes)
+    bloque_scores(cn, en, path_scores_dataset_processed, path_dataset_scores, path_boxplot, path_processed_scores_dataset, pacientes)
 finally:
     print("TIME AT END:", datetime.datetime.now())
