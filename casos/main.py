@@ -17,6 +17,10 @@ from tabulate import tabulate
 import seaborn as sns
 # %matplotlib inline
 
+# Set a global random seed for reproducibility
+import tensorflow as tf
+tf.keras.utils.set_random_seed(42)
+
 
 from configuration.config import bloque_parametros
 from glucose_acceleration.glucose_acceleration import bloque_glucosa_aceleracion
