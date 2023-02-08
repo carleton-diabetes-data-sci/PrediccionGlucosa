@@ -24,12 +24,12 @@ def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
     # print(x.shape)   #(2738, 24, 14)
     # print(y.shape)   #(2738,)
 
-    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0)
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0, shuffle=False)
     #print('Tamaño de xTest: ', xTest.shape)  # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
     #print('Tamaño de yTest: ', yTest.shape)   # (548,)    [ 6.3  6.9  8.   4.3  ... 6.3 22.2  2.5 13.5   5.5 16.3]
 
 
-    xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size = 0.25, random_state = 0)
+    xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size = 0.25, random_state = 0, shuffle=False)
     #print('Tamaño de xTrain: ', xTrain.shape)     # (1642, 24, 14)
     #print('Tamaño de yTrain: ', yTrain.shape)
     #print('Tamaño de xVal: ', xVal.shape) # (548, 24, 14)
