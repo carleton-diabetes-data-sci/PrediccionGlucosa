@@ -1,0 +1,117 @@
+TIME AT START: 2023-02-20 23:40:11.663782
+MAIN: BLOQUE CONFIGURACIÓN...
+-CONFIG: DEFINIR PARÁMETROS DE CONFIGURACION
+-Definir los path...
+--PATHS: DEFINIR PATHS
+-Definir los hiperparámetros del modelo LSTM
+-Definir el caso de investigación con sus parámetros
+cn: 0 en: 10 tn: 7 ph: 12 pn: 1 pi: -1 st: 0 a: 1 fw: 1
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE PROCESAMIENTO DE DATOS...
+MAIN: BLOQUE EJECUCIÓN...
+-EXECUTION: BLOQUE EJECUCIÓN...
+PACIENTE:  1
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 2.2164287471013915 mmol/L	 39.89571744782505 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+PACIENTE:  2
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 3.2153953292383304 mmol/L	 57.877115926289946 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+PACIENTE:  4
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 4.648984357422119 mmol/L	 83.68171843359815 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+PACIENTE:  6
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 1.207737610984398 mmol/L	 21.739276997719166 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+PACIENTE:  7
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 1.340048195650689 mmol/L	 24.1208675217124 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+PACIENTE:  8
+--MATRICES: BLOQUE MATRIZ GENERATES MATRICES
+---SEPARATION: SEPARATE TRAIN, VAL AND TEST
+Naive RMSE (last 20%): 1.7731273452643697 mmol/L	 31.916292214758656 mg/dL (x18)
+---SEPARATION: DIVIDE DATA INTO TRAIN, VAL AND TEST
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+----SEPARATION: DIVIDE DATE INTO TRY CONFIGURATIONS
+MAIN: BLOQUE SCORES...
+-BLOQUE SCORES: CREAR BOXPLOTS...
+--BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTES EN CASO 0
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 001 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_1          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_1          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_1          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_1          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 002 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_2          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_2          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_2          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_2          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 004 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_4          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_4          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_4          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_4          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 006 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_6          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_6          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_6          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_6          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 007 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_7          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_7          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_7          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_7          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+---BOXPLOT: BOXPLOT CON RESULTADOS DE PACIENTE 008 EN EL CASO 0
+                     Unnamed: 0  score_exp_1  ...  score_exp_6  score_exp_7
+0  execution_1_case_0_patient_8          3.0  ...          8.0          9.0
+1       mean_1_case_0_patient_8          3.0  ...          8.0          9.0
+2        min_1_case_0_patient_8          3.0  ...          8.0          9.0
+3        max_1_case_0_patient_8          3.0  ...          8.0          9.0
+
+[4 rows x 8 columns]
+-BLOQUE SCORES: CREAR GRAFICAS CON SCORES...
+TIME AT END: 2023-02-20 23:40:15.433015

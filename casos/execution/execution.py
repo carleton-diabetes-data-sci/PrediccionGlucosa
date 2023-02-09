@@ -30,53 +30,53 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
         #bloque matriz antes o después de las ejecuciones independiente, depende entonces si se vuelven a dividir xtrain, xval y xtest en las ejecuciones.  Antes, se repiten resultados.
         yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
 
-        for exe in range(execution_number):    #duda, execution antes de bloque matriz, separar x y y dividir datos o depues.
-            print('\t EJECUCION: ', exe)
-            execution_list.append("execution_" + str(exe+1) + "_case_" + str(cn) + "_patient_" + str(paciente))
+        # for exe in range(execution_number):    #duda, execution antes de bloque matriz, separar x y y dividir datos o depues.
+        #     print('\t EJECUCION: ', exe)
+        #     execution_list.append("execution_" + str(exe+1) + "_case_" + str(cn) + "_patient_" + str(paciente))
 
-            # bloque matriz después de las ejecuciones independiente, depende entonces si se vuelven a dividir xtrain, xval y xtest en las ejecuciones.  Antes, se repiten resultados.
-            yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(
-                cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
+        #     # bloque matriz después de las ejecuciones independiente, depende entonces si se vuelven a dividir xtrain, xval y xtest en las ejecuciones.  Antes, se repiten resultados.
+        #     yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel, xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro, xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles, xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas, xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp, xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles, xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin, xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas, xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp, xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles, xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin, xTest_Insulin_lispro, xTest_Insulin_lispro_regular, xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles = bloque_matriz(
+        #         cn, ac, path_full_dataset_processed, paciente, posicion_glucosa, datosProcesados, path_models_saved)
 
-            cargar=0          #to save the model first
-            bloque_guardar_modelos_experimentos(cargar, units, epochs, batch_size, adam_opt, path_models_saved, cn,
-                                                paciente,
-                                                exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
-                                                xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
-                                                xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
-                                                xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
-                                                xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
-                                                xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
-                                                xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
-                                                xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles,
-                                                xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
-                                                xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
-                                                xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
-                                                xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
-                                                xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
-                                                xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas,
-                                                xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp,
-                                                xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
-            cargar=1       #to load the model after
-            listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(
-                                                  cargar, listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7, units, epochs, batch_size, adam_opt, path_models_saved,
-                                                  cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
-                                                  xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
-                                                  xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
-                                                  xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
-                                                  xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
-                                                  xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
-                                                  xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
-                                                  xVal_Insulin_lispro, xVal_Insulin_lispro_regular,
-                                                  xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
-                                                  xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
-                                                  xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
-                                                  xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
-                                                  xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
-                                                  xTest_Insulin_profiles, xTest_Insulin_exp,
-                                                  xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles,
-                                                  xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro,
-                                                  xTest_Insulin_comidasExp_profiles)
+        #     cargar=0          #to save the model first
+        #     bloque_guardar_modelos_experimentos(cargar, units, epochs, batch_size, adam_opt, path_models_saved, cn,
+        #                                         paciente,
+        #                                         exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
+        #                                         xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
+        #                                         xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
+        #                                         xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
+        #                                         xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
+        #                                         xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
+        #                                         xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
+        #                                         xVal_Insulin_lispro, xVal_Insulin_lispro_regular, xVal_Insulin_profiles,
+        #                                         xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
+        #                                         xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
+        #                                         xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
+        #                                         xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
+        #                                         xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
+        #                                         xTest_Insulin_profiles, xTest_Insulin_exp, xTest_Insulin_comidasDeltas,
+        #                                         xTest_Insulin_comidasDeltas_profiles, xTest_Insulin_comidasExp,
+        #                                         xTest_Insulin_comidasExp_lispro, xTest_Insulin_comidasExp_profiles)
+        #     cargar=1       #to load the model after
+        #     listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7  = bloque_cargar_modelos_experimentos(
+        #                                           cargar, listaScores, scores_exp_1, scores_exp_2, scores_exp_3, scores_exp_4, scores_exp_5, scores_exp_6, scores_exp_7, units, epochs, batch_size, adam_opt, path_models_saved,
+        #                                           cn, paciente, exe, yTrain, yVal, yTest, xTrain_glucose, xTrain_Accel,
+        #                                           xTrain_DeltaInsulin, xTrain_Insulin, xTrain_Insulin_lispro,
+        #                                           xTrain_Insulin_lispro_regular, xTrain_Insulin_profiles,
+        #                                           xTrain_Insulin_exp, xTrain_Insulin_comidasDeltas,
+        #                                           xTrain_Insulin_comidasDeltas_profiles, xTrain_Insulin_comidasExp,
+        #                                           xTrain_Insulin_comidasExp_lispro, xTrain_Insulin_comidasExp_profiles,
+        #                                           xVal_glucose, xVal_Accel, xVal_DeltaInsulin, xVal_Insulin,
+        #                                           xVal_Insulin_lispro, xVal_Insulin_lispro_regular,
+        #                                           xVal_Insulin_profiles, xVal_Insulin_exp, xVal_Insulin_comidasDeltas,
+        #                                           xVal_Insulin_comidasDeltas_profiles, xVal_Insulin_comidasExp,
+        #                                           xVal_Insulin_comidasExp_lispro, xVal_Insulin_comidasExp_profiles,
+        #                                           xTest_glucose, xTest_Accel, xTest_DeltaInsulin, xTest_Insulin,
+        #                                           xTest_Insulin_lispro, xTest_Insulin_lispro_regular,
+        #                                           xTest_Insulin_profiles, xTest_Insulin_exp,
+        #                                           xTest_Insulin_comidasDeltas, xTest_Insulin_comidasDeltas_profiles,
+        #                                           xTest_Insulin_comidasExp, xTest_Insulin_comidasExp_lispro,
+        #                                           xTest_Insulin_comidasExp_profiles)
 
 
 
@@ -108,17 +108,17 @@ def bloque_ejecucion(cargar, units, epochs, batch_size, adam_opt, cn, ac, pi, pa
         # print(' -  Valor mínimo: ', np.amin(scores_exp_7))
         # print(' - Valor máximo: ', np.amax(scores_exp_7))
 
-        listaScores.append([np.mean(scores_exp_1), np.mean(scores_exp_2), np.mean(scores_exp_3), np.mean(scores_exp_4), np.mean(scores_exp_5), np.mean(scores_exp_6), np.mean(scores_exp_7)])
-        listaScores.append([np.amin(scores_exp_1), np.amin(scores_exp_2), np.amin(scores_exp_3), np.amin(scores_exp_4), np.amin(scores_exp_5), np.amin(scores_exp_6), np.amin(scores_exp_7)])
-        listaScores.append([np.amax(scores_exp_1), np.amax(scores_exp_2), np.amax(scores_exp_3), np.amax(scores_exp_4), np.amax(scores_exp_5), np.amax(scores_exp_6), np.amax(scores_exp_7)])
-        execution_list.append('mean_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
-        execution_list.append('min_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
-        execution_list.append('max_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
+        # listaScores.append([np.mean(scores_exp_1), np.mean(scores_exp_2), np.mean(scores_exp_3), np.mean(scores_exp_4), np.mean(scores_exp_5), np.mean(scores_exp_6), np.mean(scores_exp_7)])
+        # listaScores.append([np.amin(scores_exp_1), np.amin(scores_exp_2), np.amin(scores_exp_3), np.amin(scores_exp_4), np.amin(scores_exp_5), np.amin(scores_exp_6), np.amin(scores_exp_7)])
+        # listaScores.append([np.amax(scores_exp_1), np.amax(scores_exp_2), np.amax(scores_exp_3), np.amax(scores_exp_4), np.amax(scores_exp_5), np.amax(scores_exp_6), np.amax(scores_exp_7)])
+        # execution_list.append('mean_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
+        # execution_list.append('min_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
+        # execution_list.append('max_' + str(execution_number) + "_case_" + str(cn) + "_patient_" + str(paciente))
 
-        #print(listaScores)
-        #print(execution_list)
-        df = pd.DataFrame(np.array(listaScores), columns=['score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4', 'score_exp_5', 'score_exp_6', 'score_exp_7'], index=execution_list)
-        #print(df)
-        path_scores = path_scores_dataset_processed[paciente - 1]
-        df.to_csv(path_scores, index=True)
+        # #print(listaScores)
+        # #print(execution_list)
+        # df = pd.DataFrame(np.array(listaScores), columns=['score_exp_1', 'score_exp_2', 'score_exp_3', 'score_exp_4', 'score_exp_5', 'score_exp_6', 'score_exp_7'], index=execution_list)
+        # #print(df)
+        # path_scores = path_scores_dataset_processed[paciente - 1]
+        # df.to_csv(path_scores, index=True)
 

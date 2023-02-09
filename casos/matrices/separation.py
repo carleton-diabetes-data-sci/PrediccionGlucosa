@@ -2,7 +2,10 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+from tensorflow.keras import backend as K
 
+def root_mean_squared_error(y_true, y_pred):
+    return K.eval(K.sqrt(K.mean(K.square(y_pred - y_true))))
 
 
 def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
@@ -28,6 +31,18 @@ def separar_train_val_test(cn, x ,y, paciente, path_models_saved):
     #print('Tamaño de xTest: ', xTest.shape)  # (548, 24, 14)      [[[12.9        45.11801353  0.         ...  0.          0.       0.        ]
     #print('Tamaño de yTest: ', yTest.shape)   # (548,)    [ 6.3  6.9  8.   4.3  ... 6.3 22.2  2.5 13.5   5.5 16.3]
 
+    # Calculate and print performance (RMSE) of naive model on unshuffled test data (last 20%)
+        # yTest is an array containing actual blood glucose levels (one hour into the future)
+        # xTest[:,-1,0] is an array containing the last glucose reading for each two-hour training window
+            # the colon selects all data points
+            # -1 refers to the last time step
+            # 0 refers to the first feature, which is blood glucose
+    # By calculating the RMSE between values from these two arrays,
+    # we obtain the RMSE of a naive model that simply predicts that a patient's
+    # blood glucose level one hour in the future will equal their current blood glucose level
+    xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size = 0.2, random_state = 0, shuffle=False)
+    rmse = root_mean_squared_error(yTest, xTest[:,-1,0])
+    print("Naive RMSE (last 20%):", rmse, "mmol/L\t", rmse * 18, "mg/dL (x18)")
 
     xTrain, xVal, yTrain, yVal = train_test_split(xTrain, yTrain, test_size = 0.25, random_state = 0)
     #print('Tamaño de xTrain: ', xTrain.shape)     # (1642, 24, 14)
